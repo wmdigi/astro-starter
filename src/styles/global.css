@@ -1,0 +1,56 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+	font-family: Inter, system-ui, sans-serif;
+	scrollbar-gutter: stable;
+	overflow: clip scroll;
+	touch-action: pan-y;
+}
+
+html,
+body {
+	margin: 0;
+}
+
+body {
+	@apply flex min-h-[100dvh] flex-col;
+}
+
+.scroll-disabled {
+	overflow: hidden;
+	touch-action: none;
+}
+
+@layer components {
+	section {
+		@apply py-[28px] sm:py-[36px] md:py-[48px] lg:py-[64px];
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+		@apply font-bold leading-normal;
+	}
+
+	.xxx {
+		@apply border border-sky-500/30 bg-sky-500/30;
+	}
+}
+
+/* Fix for View Transition API z-index issue */
+nav {
+	view-transition-name: navigation;
+}
+
+::view-transition-group(navigation) {
+	z-index: 100;
+}

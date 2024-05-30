@@ -1,0 +1,70 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+
+import "@styles/global.css";
+
+const VIEW_TRANSITIONS = true;
+
+const baseUrl = import.meta.env.BASE_URL;
+
+const {
+	page_name = "Website",
+	title = "Homepage",
+	description = "Description",
+	shareImage = `${baseUrl}/shareimage.jpg`,
+	themeColor = "#020419",
+	lang = "en",
+} = Astro.props;
+---
+
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={shareImage} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={page_name} />
+		<meta property="og:url" content={baseUrl} />
+
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={shareImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<meta name="theme-color" content={themeColor} />
+
+		<link
+			href={`${baseUrl}/favicon.png`}
+			rel="shortcut icon"
+			type="image/x-icon"
+		/>
+		<link href={`${baseUrl}/touchicon.png`} rel="apple-touch-icon" />
+		<link rel="sitemap" href={`${baseUrl}/sitemap-index.xml`} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<title>{page_name} — {title}</title>
+		{VIEW_TRANSITIONS && <ViewTransitions />}
+
+		<script>
+			//import "@lib/gtm.ts"
+			//import "@lib/lenis.ts"
+		</script>
+
+		<!-- SWIPER <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+	</head>
+
+	<body>
+		<Navigation />
+		<main class="flex flex-col overflow-x-clip">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

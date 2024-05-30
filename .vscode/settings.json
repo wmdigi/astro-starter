@@ -1,0 +1,19 @@
+{
+	"files.autoSave": "onFocusChange",
+	"editor.fontFamily": "Fira Code",
+	"editor.renderWhitespace": "all",
+	"editor.insertSpaces": false,
+	"editor.formatOnSave": true,
+	"files.autoSaveDelay": 500,
+	"editor.useTabStops": false,
+	"editor.guides.indentation": false,
+	"workbench.tree.indent": 20,
+	"workbench.tree.renderIndentGuides": "none",
+	"prettier.useTabs": true,
+	"i18n-ally.tabStyle": "tab",
+	"editor.detectIndentation": false,
+	"workbench.editor.enablePreview": false, // Tabs are no longer replaced with other files
+	"workbench.editor.enablePreviewFromQuickOpen": false,
+	"prettier.tabWidth": 4,
+	"prettier.printWidth": 120 // how long line should be before breaking (attributes etc.)
+}

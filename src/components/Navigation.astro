@@ -1,0 +1,40 @@
+---
+const links = [
+	{ name: "Home", url: "/" },
+	{ name: "About", url: "/about" },
+	{ name: "Services", url: "/services" },
+	{ name: "Contact", url: "/contact" },
+];
+---
+
+<nav class="flex h-[90px] items-center gap-8 bg-sky-500/10 px-8 justify-between">
+	<div class="flex justify-between gap-4">
+		<a
+			href="/"
+			class="flex h-8 items-center rounded-full bg-sky-500/10 px-4 text-sm font-medium uppercase text-sky-500"
+			>logo</a
+		>
+		<button class="h-8 w-8 bg-sky-500"></button>
+	</div>
+	<ul class="flex gap-4">
+		{
+			links.map(({ name, url }) => (
+				<li>
+					<a href={url} class="text-sky-500/50 hover:text-sky-500">
+						{name}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+	<div class="flex gap-2">
+		<button
+			class="flex h-8 items-center rounded-full border border-sky-500 px-4 text-sm font-medium uppercase text-sky-500"
+			>Click</button
+		>
+		<button
+			class="flex h-8 items-center rounded-full border border-sky-500 bg-sky-500/80 px-4 text-sm font-medium uppercase text-white"
+			>Click</button
+		>
+	</div>
+</nav>
