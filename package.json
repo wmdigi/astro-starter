@@ -11,17 +11,27 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.7.0",
+    "@astrojs/svelte": "^5.7.0",
     "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/ts-plugin": "^1.9.3",
     "@astrojs/vercel": "^7.6.0",
-    "@fontsource/inter": "^5.0.18",
+    "@directus/sdk": "^17.0.0",
+    "@fontsource/chakra-petch": "^5.0.20",
+    "@fontsource/inter": "^5.0.20",
+    "@gauel/svg-shape": "^1.0.0",
     "@studio-freight/lenis": "^1.0.42",
+    "@tailwindcss/forms": "^0.5.7",
+    "@vercel/speed-insights": "^1.0.12",
     "astro": "^4.9.2",
     "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.14",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-svelte": "^3.2.6",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "svelte": "^5.0.0-next.220",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.1.5"
+    "@astrojs/sitemap": "^3.1.6"
   }
 }

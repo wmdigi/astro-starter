@@ -3,12 +3,17 @@
 @import "@fontsource/inter/600.css";
 @import "@fontsource/inter/700.css";
 
+/* Custom fonts from FontSource
+@import "@fontsource/chakra-petch/500.css";
+@import "@fontsource/chakra-petch/600.css";
+*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
-	font-family: Inter, system-ui, sans-serif;
+	font-family: "Inter", system-ui, sans-serif;
 	scrollbar-gutter: stable;
 	overflow: clip scroll;
 	touch-action: pan-y;
@@ -24,9 +29,21 @@ body {
 	@apply flex min-h-[100dvh] flex-col;
 }
 
+/* Custom font override
+.font-inter {
+	font-family: Inter, system-ui, sans-serif;
+}
+*/
+
 .scroll-disabled {
 	overflow: hidden;
 	touch-action: none;
+}
+
+/* Global variables */
+:root {
+	--navbar-height-closed: 100px;
+	--navbar-height: var(--navbar-height-closed);
 }
 
 @layer components {
@@ -42,8 +59,109 @@ body {
 		@apply font-bold leading-normal;
 	}
 
+	.section-title {
+		@apply font-bold text-3xl/none uppercase;
+	}
+
 	.xxx {
 		@apply border border-sky-500/30 bg-sky-500/30;
+	}
+
+	.container {
+		@apply mx-auto w-full max-w-[1280px] px-4 sm:px-8;
+	}
+
+	.max-w-container {
+		@apply mx-auto w-full max-w-[1216px];
+	}
+
+	.button {
+		@apply h-[50px] lg:h-[64px] bg-sky-400 hover:bg-sky-500 active:bg-sky-600 text-black px-[48px] flex items-center justify-center uppercase font-medium transition-colors duration-200 ease-easeOutCubic;
+	}
+
+	.button.small {
+		@apply h-[50px] px-[24px];
+	}
+
+	.pt-hero {
+		@apply pt-[--navbar-height];
+	}
+
+	/* Small dot divider */
+	.dot {
+		@apply w-1 h-1 rounded-full bg-black/30 dark:bg-white/30 shrink-0;
+	}
+
+	/* Helper global hover effect */
+	.hover {
+		@apply hover:!opacity-60 transition-opacity duration-150 ease-in-out;
+	}
+
+	/* HR */
+	hr {
+		@apply h-px w-full bg-black/10 dark:bg-white/10 border-none;
+	}
+
+	/* Intro animations */
+	.slide-in-initial {
+		@apply initial:opacity-0 initial:translate-y-[var(--y,-8px)] mounted:opacity-100 mounted:translate-y-0 hover:delay-0;
+		transition:
+			opacity 0.7s ease-out var(--delay),
+			transform 0.7s ease-out var(--delay);
+	}
+	.slide-in {
+		@apply opacity-0 translate-y-[var(--y,-8px)] mounted:opacity-100 mounted:translate-y-0 hover:delay-0;
+		transition:
+			opacity 0.7s ease-out var(--delay),
+			transform 0.7s ease-out var(--delay);
+	}
+
+	.fade-in-initial {
+		@apply initial:opacity-0 mounted:opacity-100 hover:delay-0;
+		transition: opacity 0.7s ease-out var(--delay);
+	}
+	.fade-in {
+		@apply opacity-0 mounted:opacity-100 hover:delay-0;
+		transition: opacity 0.7s ease-out var(--delay);
+	}
+}
+
+/* Enable zero-JavaScript view transitions */
+@view-transition {
+	navigation: auto;
+}
+
+/* Customize the default transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 300ms; /* Adjust the duration as needed */
+	animation-timing-function: cubic-bezier(0.6, 0, 0.4, 1); /* Custom easing function */
+}
+
+/* Optional: Fade transition for the whole page */
+::view-transition-old(root) {
+	animation: fade-out 300ms cubic-bezier(0.6, 0, 0.4, 1) both;
+}
+
+::view-transition-new(root) {
+	animation: fade-in 300ms cubic-bezier(0.6, 0, 0.4, 1) both;
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }
 

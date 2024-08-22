@@ -1,9 +1,9 @@
 ---
-import Main from "@src/layouts/Main.astro";
+import {Layout} from "@components";
 ---
 
-<Main>
-	<div class="container">
-		<section>Hero</section>
-	</div>
-</Main>
+<Layout title="Homepage">
+	<section id="hero" class="pt-hero">
+		<div class="container">Homepage</div>
+	</section>
+</Layout>

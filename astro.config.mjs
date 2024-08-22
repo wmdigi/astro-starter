@@ -3,9 +3,17 @@ import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 import sitemap from "@astrojs/sitemap";
 
-// https://astro.build/config
+const site = process.env.PUBLIC_SITE;
+
 export default defineConfig({
-  integrations: [tailwind(), sitemap()],
-  output: "hybrid",
-  adapter: vercel()
+	site,
+	base: "/",
+	integrations: [
+		tailwind(),
+		sitemap()
+	],
+	output: "hybrid",
+	adapter: vercel({
+		isr: true
+	}),
 });

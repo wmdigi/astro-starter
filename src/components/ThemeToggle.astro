@@ -1,0 +1,24 @@
+---
+const { class: className = "" } = Astro.props;
+---
+
+<button id="theme-toggle-btn" class={`hover flex ${className}`} onclick="document.documentElement.classList.toggle('dark')">
+	<svg width="10" height="26" viewBox="0 0 10 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M10 0H5.2L0 5.2V20.8L5.2 26H10V24H7C4.23858 24 2 21.7614 2 19V7C2 4.23858 4.23858 2 7 2H10V0Z" fill="currentColor"/>
+	</svg>
+	<div class="toggle-wrapper w-[24px] h-[26px] flex justify-center items-start overflow-hidden">
+	<div class="transition-transform duration-300 ease-easeOutCubic h-[52px] w-full flex flex-col items-center dark:-translate-y-[26px]">
+		<!-- Sun icon	-->
+		<svg width="18" height="26" viewBox="0 0 18 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M9 4V6.25M15.364 6.636L13.773 8.227M18 13H15.75M15.364 19.364L13.773 17.773M9 19.75V22M4.227 17.773L2.636 19.364M2.25 13H0M4.227 8.227L2.636 6.636M12.75 13C12.75 13.9946 12.3549 14.9484 11.6517 15.6517C10.9484 16.3549 9.99456 16.75 9 16.75C8.00544 16.75 7.05161 16.3549 6.34835 15.6517C5.64509 14.9484 5.25 13.9946 5.25 13C5.25 12.0054 5.64509 11.0516 6.34835 10.3483C7.05161 9.64509 8.00544 9.25 9 9.25C9.99456 9.25 10.9484 9.64509 11.6517 10.3483C12.3549 11.0516 12.75 12.0054 12.75 13Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+		</svg>
+		<!-- Moon icon	-->
+		<svg width="21" height="26" viewBox="0 0 21 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M19.752 16.002C18.5632 16.4975 17.2879 16.7517 16 16.75C10.615 16.75 6.25 12.385 6.25 7.00005C6.25 5.67005 6.516 4.40305 6.998 3.24805C5.22147 3.98916 3.70397 5.2394 2.63663 6.8413C1.56928 8.44321 0.999835 10.3251 1 12.25C1 17.635 5.365 22 10.75 22C12.6749 22.0002 14.5568 21.4308 16.1587 20.3634C17.7606 19.2961 19.0109 17.7786 19.752 16.002Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+		</svg>
+	</div>
+	</div>
+	<svg width="10" height="26" viewBox="0 0 10 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path d="M0 0H4.8L10 5.2V20.8L4.8 26H0V24H3C5.76142 24 8 21.7614 8 19V7C8 4.23858 5.76142 2 3 2H0V0Z" fill="currentColor"/>
+	</svg>
+</button>

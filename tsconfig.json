@@ -1,18 +1,36 @@
 {
-  "extends": "astro/tsconfigs/base",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@styles/*": ["src/styles/*"],
-      "@images/*": ["src/assets/images/*"],
-      "@videos/*": ["src/assets/videos/*"],
-      "@icons/*": ["src/components/icons/*"],
-      "@lib/*": ["src/js/*"],
-      "@src/*": ["src/*"]
-    },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
-  }
+	"extends": "astro/tsconfigs/base",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@components": ["src/components"],
+			"@components/*": ["src/components/*"],
+
+			"@layouts": ["src/layouts"],
+
+			"@assets/*": ["src/assets/*"],
+			"@styles/*": ["src/styles/*"],
+			"@images/*": ["src/assets/images/*"],
+			"@videos/*": ["src/assets/videos/*"],
+			"@lib/*": ["src/lib/*"],
+
+			"@icons": ["src/components/icons"],
+			"@icons/*": ["src/components/icons/*"],
+			
+			"@utils": ["src/lib/utils"],
+			"@data": ["src/lib/data"],
+			"@log": ["src/lib/logger"],
+			"@directus": ["src/lib/directus"],
+			"@src/*": ["src/*"]
+		},
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+		"verbatimModuleSyntax": true,
+		"allowImportingTsExtensions": true,
+		"plugins": [
+			{
+				"name": "@astrojs/ts-plugin"
+			}
+		]
+	}
 }

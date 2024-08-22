@@ -1,6 +1,21 @@
 {
-	"plugins": ["prettier-plugin-tailwindcss"],
-	"tabWidth": 4,
 	"useTabs": true,
-	"max_line_length": 120
+	"tabWidth": 4,
+	"printWidth": 120,
+	"plugins": ["prettier-plugin-astro", "prettier-plugin-svelte"],
+	"pluginSearchDirs": false,
+	"overrides": [
+		{
+			"files": "*.astro",
+			"options": {
+				"parser": "astro"
+			}
+		},
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		}
+	]
 }

@@ -15,5 +15,6 @@
 	"workbench.editor.enablePreview": false, // Tabs are no longer replaced with other files
 	"workbench.editor.enablePreviewFromQuickOpen": false,
 	"prettier.tabWidth": 4,
-	"prettier.printWidth": 120 // how long line should be before breaking (attributes etc.)
+	"prettier.printWidth": 120,
+	"cSpell.words": ["directus"]
 }

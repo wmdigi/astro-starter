@@ -1,0 +1,86 @@
+---
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
+
+import "@styles/global.css";
+
+const {
+	page_name = "Astro",
+	title = "Starter",
+	description = "Description",
+	shareImage = `shareimage.jpg`,
+	themeColor = "#fff",
+	themeColorDark = "#000",
+	lang = "en",
+} = Astro.props;
+---
+
+<html
+	lang={lang}
+	class="dark:bg-[#131313] text-black dark:text-white mounted:transition-colors mounted:duration-500 mounted:ease-easeOutCubic onload"
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={description} />
+
+		<meta property="og:title" content=`${page_name} — ${title}` />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={shareImage} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content=`${page_name} — ${title}` />
+		<meta property="og:url" content="/" />
+
+		<meta property="twitter:title" content=`${page_name} — ${title}` />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={shareImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content={themeColor} />
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content={themeColorDark} />
+
+		<link
+			href={`favicon-light.png`}
+			media="(prefers-color-scheme: light)"
+			rel="shortcut icon"
+			type="image/x-icon"
+		/>
+		<link href={`favicon-dark.png`} media="(prefers-color-scheme: dark)" rel="shortcut icon" type="image/x-icon" />
+
+		<link href={`touchicon.png`} rel="apple-touch-icon" />
+
+		<link rel="sitemap" href={`sitemap-index.xml`} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<title>{page_name} — {title}</title>
+
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w: Window, d: Document, s: string, l: string, i: string) {
+				(w as any)[l] = (w as any)[l] || [];
+				(w as any)[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				const f = d.getElementsByTagName(s)[0];
+				const j = d.createElement(s) as HTMLScriptElement;
+				const dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode?.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-XXXXXX");
+		</script>
+
+		<script is:inline src="/init.js"></script>
+
+		<base href={import.meta.env.BASE_URL} />
+	</head>
+
+	<body>
+		<SpeedInsights />
+		<Navigation />
+		<main class="flex flex-col overflow-x-clip">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
