@@ -10,10 +10,11 @@ export default {
 	theme: {
 		extend: {
 			screens: {
-				sm: "480px",
-				md: "768px",
-				lg: "1024px",
-				xl: "1280px",
+				xs: "375px",
+				sm: "440px", // iPhone 15 Plus = 430x932
+				md: "768px", // iPad mini = 768x1024
+				lg: "1024px", // iPad Pro = 1024x1366
+				xl: "1366px",
 				"2xl": "1440px",
 				"3xl": "1920px",
 				"4xl": "2560px",
