@@ -10,11 +10,11 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.7.0",
-    "@astrojs/svelte": "^5.7.0",
-    "@astrojs/tailwind": "^5.1.0",
-    "@astrojs/ts-plugin": "^1.9.3",
-    "@astrojs/vercel": "^7.6.0",
+    "@astrojs/check": "0.9.4",
+    "@astrojs/svelte": "5.7.3",
+    "@astrojs/tailwind": "5.1.2",
+    "@astrojs/ts-plugin": "1.10.4",
+    "@astrojs/vercel": "7.8.2",
     "@directus/sdk": "^17.0.0",
     "@fontsource/chakra-petch": "^5.0.20",
     "@fontsource/inter": "^5.0.20",
@@ -22,7 +22,7 @@
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/forms": "^0.5.7",
     "@vercel/speed-insights": "^1.0.12",
-    "astro": "^4.9.2",
+    "astro": "4.16.10",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-svelte": "^3.2.6",
@@ -32,6 +32,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.1.6"
+    "@astrojs/sitemap": "3.2.1",
+    "@wmdigi/dom": "^1.0.1"
   }
 }

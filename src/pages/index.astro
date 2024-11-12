@@ -1,9 +1,18 @@
 ---
-import {Layout} from "@components";
+import { Layout } from "@components";
 ---
+
+<script>
+	import { $ } from "@wmdigi/dom";
+
+	$("#btn").on("click", () => {
+		alert("Hello World");
+	});
+</script>
 
 <Layout title="Homepage">
 	<section id="hero" class="pt-hero">
 		<div class="container">Homepage</div>
+		<button id="btn">ClickMe</button>
 	</section>
 </Layout>
