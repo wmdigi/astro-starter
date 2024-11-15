@@ -28,7 +28,7 @@ const currentPath = new URL(Astro.request.url).pathname;
 							href={url}
 							class:list={[
 								"hover:underline uppercase block lg:slide-in-initial translate-y-4 opacity-0 lg:translate-y-0 lg:opacity-100 transition-all duration-500 ease-easeOutCubic delay-[--delay]",
-								{ underline: getCurrentUrlPath(currentPath) === url },
+								{ underline: getCurrentUrlPath(currentPath).includes(url) },
 							]}
 							style={`--delay: ${200 + index * 100}ms`}
 						>

@@ -55,6 +55,10 @@ export default {
 				addVariant('logged-in', [
 					'&.logged-in',
 					'.logged-in &'
+				]),
+				addVariant('server-loaded', [
+					'&.server-loaded',
+					'.server-loaded &'
 				])
 		}),
 		require('@tailwindcss/forms'),
