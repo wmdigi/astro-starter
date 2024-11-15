@@ -34,7 +34,7 @@ const locals = Astro.locals
 <script>
 	import { $ } from "@wmdigi/dom";
 
-	// $("#user-auth").addClass("server-loaded");
+	$("#user-auth").addClass("server-loaded");
 
 	$("#user-auth").hasClass("logged-in") && $(document.documentElement).addClass("logged-in");
 
@@ -51,9 +51,9 @@ const locals = Astro.locals
 <div id="user-auth" class:list={["group/auth flex gap-8 items-center z-10 relative", locals.user && "logged-in"]}>
 	<!-- <span class="hidden logged-in:block">{locals.user?.first_name}</span> -->
 	<Button id="login-modal-button" class="small hidden lg:flex will-change-transform">
-		<div class="flex flex-col items-center justify-end translate-y-3 logged-in:-translate-y-2.5 transition-transform duration-300 ease-easeOutCubic">
-			<span class="opacity-100 logged-in:opacity-0 transition-opacity duration-300 ease-easeOutCubic">Login</span>
-			<span class="opacity-0 logged-in:opacity-100 transition-opacity duration-300 ease-easeOutCubic">Logout</span>
+		<div class="flex flex-col items-center justify-end translate-y-3 group-[.logged-in.server-loaded]/auth:-translate-y-2.5 transition-transform duration-300 ease-easeOutCubic">
+			<span class="opacity-100 group-[.logged-in.server-loaded]/auth:opacity-0 transition-opacity duration-300 ease-easeOutCubic">Login</span>
+			<span class="opacity-0 group-[.logged-in.server-loaded]/auth:opacity-100 transition-opacity duration-300 ease-easeOutCubic">Logout</span>
 		</div>
 	</Button>
 </div>
