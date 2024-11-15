@@ -60,7 +60,7 @@ export function formatDate(
 }
 
 export const getCurrentUrlPath = (url: string): string => {
-	return "/" + url.slice(1);
+	return "/" + url.slice(1) + "/";
 };
 
 // toggle dark mode with save to local storage dark-mode key
