@@ -7,7 +7,7 @@ import Button from "@components/Button.astro";
 
 // const current_refresh_token =  Astro.cookies.get("refresh_token")?.value
 
-let user: any;
+//let user: any;
 
 // try {
 // 	console.log("Refresh token [UserAuth.astro]: ", current_refresh_token)
@@ -31,10 +31,10 @@ let user: any;
 const locals = Astro.locals
 ---
 
-<!-- <script is:inline>
+<script is:inline>
 	const userAuth = document.getElementById("user-auth");
 	userAuth.classList.contains("logged-in") && document.documentElement.classList.add("logged-in");
-</script> -->
+</script>
 
 <div id="user-auth" class:list={["flex gap-8 items-center z-10 relative", locals.user && "logged-in"]}>
 	<span class="hidden logged-in:block">{locals.user?.first_name}</span>
