@@ -13,16 +13,30 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
 	if (current_access_token) {
 		try {
-			const { access_token, refresh_token } = await client.request(refresh("json", current_refresh_token));
+			// COMMENTED OUT SOLUTION WOULD RESOLVE IN REFRESHING THE TOKENS ON EVERY REQUEST, DO WE WANT THAT? I GUESS NOT?
 
-			if (access_token && refresh_token) {
-				client.setToken(access_token);
-				context.cookies.set("refresh_token", refresh_token)
+			// const { access_token, refresh_token, expires } = await client.request(refresh("json", current_refresh_token));
 
-				const user = await client.request(readMe());
-				context.locals.user = user;
-				console.log("Relogged in[Middleware.ts]: ", context.locals.user)
-			}
+			// if (access_token && refresh_token && expires) {
+			// 	client.setToken(access_token);
+			// 	context.cookies.delete("access_token");
+			// 	context.cookies.set("refresh_token", refresh_token, {
+			// 		path: '/',
+			// 		secure: true,
+			// 		sameSite: 'strict',
+			// 		httpOnly: true,
+			// 		maxAge: expires
+			// 	  });
+
+			// 	const user = await client.request(readMe());
+			// 	context.locals.user = user;
+			// 	console.log("Relogged in[Middleware.ts]: ", context.locals.user)
+			// }
+			
+			client.setToken(current_access_token);
+			const user = await client.request(readMe());
+			context.locals.user = user;
+			console.log("Relogged in[Middleware.ts]: ", context.locals.user)
 
 		  } catch (error) {
 			console.error("Auth error:", error);

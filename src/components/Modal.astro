@@ -4,7 +4,6 @@ const { id } = Astro.props;
 
 <script>
 	import { $ } from "@wmdigi/dom";
-import { actions } from "astro:actions";
 
 	$(".modal").array.forEach((modal: HTMLElement) => {
 		// Close modal when clicking outside
@@ -14,12 +13,7 @@ import { actions } from "astro:actions";
 			}
 		})
 		// Open modal when clicking on button
-		$(`#${modal.id}-button`).on("click", async () => {
-			if (modal.id === "login-modal" && $(document.documentElement).hasClass("logged-in")) {
-				//await actions.user.logoutUser();
-				$(document.documentElement).removeClass("logged-in");
-				return
-			}
+		$(`#${modal.id}-button`).on("click", () => {
 			$(modal).addClass("opened");
 			$(".modal").array.filter((m: HTMLElement) => m !== modal).forEach((m: HTMLElement) => $(m).removeClass("opened"));
 		});
