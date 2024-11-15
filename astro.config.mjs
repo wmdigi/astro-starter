@@ -13,11 +13,11 @@ export default defineConfig({
     integrations: [
 		tailwind(), 
 		sitemap(),
-		partytown(
-			{
-				config: { debug: false },
-			}
-		),
+		// partytown(
+		// 	{
+		// 		config: { debug: false },
+		// 	}
+		// ),
 	],
     output: "static",
     adapter: vercel({
