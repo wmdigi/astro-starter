@@ -1,0 +1,50 @@
+---
+import { Input } from "@components";
+import { cart  } from "@lib/store";
+import Layout from "@src/layouts/Layout.astro";
+
+const products = cart.get().products;
+---
+
+<script>
+	import { $ } from "@wmdigi/dom";
+	import { cart } from "@lib/store";
+
+	// Save cart to localStorage
+	cart.subscribe((cart) => {
+		  localStorage.setItem("cart", JSON.stringify(cart));
+	})
+
+	// Increase product count
+	$("#cart-product-count-increase").on("click", () => {
+		const id = $("#cart-product-count").closest("[id]").id.split("-")[1];
+		
+	});
+</script>
+
+<Layout title="Cart">
+	<section id="hero" class="pt-hero w-full h-svh">
+		<div class="container flex flex-col items-start justify-start gap-8 md:gap-16">
+			<h2 data-split-text>Cart</h2>
+			<div class="w-full h-full flex flex-col items-start justify-start gap-8 overflow-hidden">
+				{products.length > 0 ? (
+					products.map(({ id, title, price }) => (
+					  <div id={`product-${id}`} class="w-full flex flex-row items-center justify-start gap-8">
+						<h5 class="font-light">{title}</h5>
+						<div id="cart-product-count" class="flex flex-row items-stretch justify-center border border-black rounded-full overflow-hidden">
+							<button id="cart-product-count-decrease" class="px-4 bg-transparent hover:bg-black text-black hover:text-white text-2xl border-r border-black transition-default">-</button>
+							<Input type="number" value="1" class="!w-[4rem] h-full rounded-none !border-transparent !text-black !text-center" />
+							<button id="cart-product-count-increase" class="px-4 bg-transparent hover:bg-black text-black hover:text-white text-2xl border-l border-black transition-default">+</button>
+						</div>
+						<h5 class="">${price}</h5>
+					  </div>
+					))
+				  ) : (
+					<div class="w-full h-full py-16 flex items-center justify-center">
+					  <h5>Cart is empty</h5>
+					</div>
+				  )}
+			</div>
+		</div>
+	</section>
+</Layout>

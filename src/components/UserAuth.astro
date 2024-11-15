@@ -33,22 +33,33 @@ const locals = Astro.locals
 
 <script>
 	import { $ } from "@wmdigi/dom";
+	import { actions } from "astro:actions";
 
 	$("#user-auth").addClass("server-loaded");
 
-	$("#user-auth").hasClass("logged-in") && $(document.documentElement).addClass("logged-in");
+	const isLoggedIn = $("#user-auth").hasClass("logged-in")
+
+	isLoggedIn && $(document.documentElement).addClass("logged-in");
 
 	$(`#login-modal-button`).on("click", () => {
-		if ($(document.documentElement).hasClass("logged-in")) {
-			$(document.documentElement).removeClass("logged-in");
-			return
-		}
+		if (isLoggedIn) return
+		console.log("what?")
 		$("#login-modal").addClass("opened");
 		$(".modal").array.filter((m: HTMLElement) => m !== $("#login-modal").first).forEach((m: HTMLElement) => $(m).removeClass("opened"));
 	});
+
+	$("#user-auth").on("submit", async (event: SubmitEvent) => {
+		if (!isLoggedIn) {
+			event.preventDefault();
+			return
+		}
+		event.preventDefault();
+		const formData = new FormData($("#user-auth").first as HTMLFormElement); // ??
+		const { data, error } = await actions.user.logoutUser(formData);
+	});
 </script>
 
-<div id="user-auth" class:list={["group/auth flex gap-8 items-center z-10 relative", locals.user && "logged-in"]}>
+<form id="user-auth" class:list={["group/auth flex gap-8 items-center z-10 relative", locals.user && "logged-in"]}>
 	<!-- <span class="hidden logged-in:block">{locals.user?.first_name}</span> -->
 	<Button id="login-modal-button" class="small hidden lg:flex will-change-transform">
 		<div class="flex flex-col items-center justify-end translate-y-3 group-[.logged-in.server-loaded]/auth:-translate-y-2.5 transition-transform duration-300 ease-easeOutCubic">
@@ -56,4 +67,4 @@ const locals = Astro.locals
 			<span class="opacity-0 group-[.logged-in.server-loaded]/auth:opacity-100 transition-opacity duration-300 ease-easeOutCubic">Logout</span>
 		</div>
 	</Button>
-</div>
+</form>

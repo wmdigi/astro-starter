@@ -8,10 +8,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	console.log("Context[Middleware.ts]: ", context.locals)
 	console.log("Cookies[Middleware.ts]: ", context.cookies);
 
-	const current_access_token =  context.cookies.get("access_token")?.value
-	const current_refresh_token =  context.cookies.get("refresh_token")?.value
+	const access_token =  context.cookies.get("access_token")?.value
+	//const current_refresh_token =  context.cookies.get("refresh_token")?.value
 
-	if (current_access_token) {
+	if (access_token) {
 		try {
 			// COMMENTED OUT SOLUTION WOULD RESOLVE IN REFRESHING THE TOKENS ON EVERY REQUEST, DO WE WANT THAT? I GUESS NOT?
 
@@ -32,8 +32,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
 			// 	context.locals.user = user;
 			// 	console.log("Relogged in[Middleware.ts]: ", context.locals.user)
 			// }
-			
-			client.setToken(current_access_token);
+
+			console.log("Access token[Middleware.ts]: ", access_token)
+			client.setToken(access_token);
 			const user = await client.request(readMe());
 			context.locals.user = user;
 			console.log("Relogged in[Middleware.ts]: ", context.locals.user)

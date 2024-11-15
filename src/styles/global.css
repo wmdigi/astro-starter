@@ -85,6 +85,14 @@ input:-internal-autofill-selected {
 		@apply text-[clamp(2.5rem,1.5rem+1.333vw,3rem)]/[80%];
 	}
 
+	h6 {
+		@apply text-[clamp(1rem,1.2vw,1.5rem)]/[120%] font-light uppercase;
+	}
+
+	p {
+		@apply text-base/[120%] font-light;
+	}
+
 	.section-title {
 		@apply font-bold text-3xl/none uppercase;
 	}
@@ -94,7 +102,7 @@ input:-internal-autofill-selected {
 	}
 
 	.container {
-		@apply mx-auto w-full max-w-container px-4 sm:px-8;
+		@apply mx-auto w-full h-full max-w-container px-4 sm:px-8;
 	}
 
 	.max-w-container {
@@ -202,4 +210,16 @@ nav {
 
 ::view-transition-group(navigation) {
 	z-index: 100;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

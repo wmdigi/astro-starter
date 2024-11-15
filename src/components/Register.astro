@@ -10,6 +10,11 @@ const result = Astro.getActionResult(actions.user.createUser);
 	import { $ } from "@wmdigi/dom";
 	import { actions } from "astro:actions";
 
+	$(`#register-modal-button`).on("click", () => {
+		$("#register-modal").addClass("opened");
+		$(".modal").array.filter((m: HTMLElement) => m !== $("#register-modal").first).forEach((m: HTMLElement) => $(m).removeClass("opened"));
+	});
+
 	$("#form-register").on("submit", async (event: SubmitEvent) => {
 		event.preventDefault();
 		const formData = new FormData($("#form-register").first as HTMLFormElement); // ??

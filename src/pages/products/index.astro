@@ -1,18 +1,8 @@
 ---
 import Layout from "@src/layouts/Layout.astro";
 import ResourceCard from "@src/components/ResourceCard.astro";
-import placeholder from "@images/placeholder.jpg";
 import ProductCard from "@components/ProductCard.astro";
-
-const product = {
-		title: "Product name",
-		description: "This is a product you wanna buy, trust me",
-		price: 19.99,
-		cover: placeholder,
-		slug: "product-1",
-	}
-
-const products = Array(4).fill(product);
+import { products } from "@lib/data";
 ---
 
 <Layout title="Products">
@@ -20,7 +10,7 @@ const products = Array(4).fill(product);
 		<div class="container flex flex-col items-start justify-start gap-8 md:gap-16">
 			<h2 data-split-text>Products</h2>
 			<div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 place-items-stretch overflow-hidden">
-				{products.map(({ title, description, price, cover, slug }) => (
+				{products?.map(({ title, description, price, cover, slug }) => (
 					<ProductCard
 						title={title}
 						description={description}

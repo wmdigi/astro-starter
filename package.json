@@ -30,6 +30,7 @@
     "@astrojs/sitemap": "3.2.1",
     "@directus/sdk": "^18.0.0",
     "@wmdigi/dom": "^1.1.1",
-    "gsap": "./gsap-bonus.tgz"
+    "gsap": "./gsap-bonus.tgz",
+    "nanostores": "^0.11.3"
   }
 }

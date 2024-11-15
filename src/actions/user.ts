@@ -5,30 +5,28 @@ import { createDirectus, rest, authentication, login, refresh, logout, createUse
 const client = createDirectus('https://wiktor.wondermakers.dev').with(authentication()).with(rest());
 const registerClient = createDirectus('https://wiktor.wondermakers.dev').with(rest());
 
-const mode = "json"; // Can be json, cookie, session
+const mode = "cookie"; // Can be json, cookie, session
 
 async function handleLogin(email: string, password: string, context: any) {
-	const response = await client.request(login(email, password, { mode }));
+	const response = await client.login(email, password);
   
-	if (!response.access_token || !response.refresh_token || !response.expires) return;
+	if (!response.access_token || !response.expires) return;
 
-	const refreshResponse = await client.request(refresh(mode, response.refresh_token));
+	//const refreshResponse = await client.request(refresh(mode, response.refresh_token));
   
-	client.setToken(refreshResponse.access_token);
-  
-	context.cookies.set("access_token", refreshResponse.access_token, {
-	  maxAge: refreshResponse.expires,
+	context.cookies.set("access_token", response.access_token, {
+	  maxAge: response.expires,
 	  secure: true,
 	  sameSite: 'strict',
 	  path: '/'
 	});
 	
-	context.cookies.set("refresh_token", refreshResponse.refresh_token, {
-	  maxAge: refreshResponse.expires,
-	  secure: true,
-	  sameSite: 'strict',
-	  path: '/'
-	});
+	// context.cookies.set("refresh_token", response.refresh_token, {
+	//   maxAge: response.expires,
+	//   secure: true,
+	//   sameSite: 'strict',
+	//   path: '/'
+	// });
   
 	const user = await client.request(readMe());
 	context.locals.user = user;
@@ -106,9 +104,12 @@ export const user = {
   }),
   logoutUser: defineAction({
     accept: 'form',
-    handler: async () => {
+    handler: async (formData, context) => {
       try {
-        await client.request(logout());
+        await client.logout();
+
+		context.cookies.delete("access_token");
+		context.cookies.delete("refresh_token");
         
         return {
           success: true,

@@ -1,19 +1,35 @@
 ---
 import { Image } from "astro:assets";
 import ArrowIcon from "@icons/ArrowIcon.astro";
-import { formatDate } from "@lib/utils";
 
 const { title, slug, description, price, cover, class: className, ...props } = Astro.props;
 ---
 
-<a
-	href={slug}
-	target="_self"
+<script>
+	import { $ } from "@wmdigi/dom";
+	import { cart } from "@lib/store";
+	import type { Product } from "@src/types/cart";
+	import { products } from "@lib/data";
+
+	$(".card").array.forEach((card: HTMLElement) => {
+		$(card).on("click", () => {
+			const product = products.find((p: Product) => p.slug === card.dataset.slug);
+
+			if (!product) return;
+			
+			cart.set({ ...cart.get(), products: [...cart.get().products, product] });
+			console.log(cart.get());
+		});
+	})
+</script>
+
+<button
 	class:list={[
 		"card group w-full cursor-pointer select-none aspect-[33.5/39] sm:aspect-[43/50] flex flex-col items-start justify-between dark:bg-black/10 dark:backdrop-blur red:bg-black/10 red:backdrop-blur border rounded overflow-hidden border-black/20 dark:border-white/20 red:border-white/20",
 		className,
 	]}
 	{...props}
+	data-slug={slug}
 >
 	<div
 		class="h-1/2 w-full relative transition-[height] duration-300 ease-easeOutCubic overflow-hidden"
@@ -34,13 +50,13 @@ const { title, slug, description, price, cover, class: className, ...props } = A
 	<div
 		class="flex flex-1 flex-col h-auto items-start p-[clamp(1.375rem,1.7vw,2rem)] w-full justify-between transition-default group-hover:bg-white"
 	>
-		<div class="flex flex-col items-start justify-start gap-[clamp(1rem,1vw,1.5rem)] w-full will-change-transform">
-			<p
-				class="!text-[clamp(1rem,1.2vw,1.5rem)]/[120%] group-hover:text-black text-black dark:text-white font-light uppercase transition-default line-clamp-4 md:line-clamp-2 text-ellipsis overflow-hidden"
+		<div class="flex flex-col items-start justify-start gap-[clamp(0.25rem,0.5vw,1.5rem)] w-full will-change-transform">
+			<h6
+				class="group-hover:text-black text-black dark:text-white transition-default line-clamp-4 md:line-clamp-2 text-ellipsis overflow-hidden"
 			>
 				{title}
-			</p>
-			<p class="group-hover:text-black text-black dark:text-white font-light uppercase transition-default">{description}</p>
+			</h6>
+			<p class="group-hover:text-black text-black dark:text-white transition-default text-left line-clamp-2 text-ellipsis overflow-hidden">{description}</p>
 		</div>
 		<div class="w-full flex flex-row items-end justify-between gap-[clamp(1rem,1vw,1.5rem)]">
 			<div
@@ -63,4 +79,4 @@ const { title, slug, description, price, cover, class: className, ...props } = A
 			</p>
 		</div>
 	</div>
-</a>
+</button>
