@@ -20,7 +20,5 @@ export default defineConfig({
 		// ),
 	],
     output: "static",
-    adapter: vercel({
-        isr: true
-    }),
+    adapter: vercel(),
 });
