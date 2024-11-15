@@ -1,0 +1,45 @@
+---
+import Button from "@components/Button.astro";
+
+// import { createDirectus, rest, readMe, authentication, refresh } from '@directus/sdk';
+
+// const client = createDirectus('https://wiktor.wondermakers.dev').with(authentication()).with(rest());
+
+// const current_refresh_token =  Astro.cookies.get("refresh_token")?.value
+
+let user: any;
+
+// try {
+// 	console.log("Refresh token [UserAuth.astro]: ", current_refresh_token)
+// 	const { access_token, refresh_token } = await client.request(refresh("json", current_refresh_token));
+// 	console.log("Refreshed access token [UserAuth.astro]: ", access_token)
+
+// 	if (!access_token || !refresh_token) return
+
+// 	client.setToken(access_token);
+// 	Astro.cookies.set("refresh_token", refresh_token)
+
+// 	user = await client.request(readMe());
+
+// 	console.log("Relogged in [UserAuth.astro]: ", user)
+// 	//context.locals.user = user;
+// 	//console.log("Relogged in[Middleware.ts]: ", context.locals.user)
+//   } catch (error) {
+// 	console.error("Auth Error [UserAuth.astro]:", error);
+//   }
+---
+
+<script is:inline>
+	const userAuth = document.getElementById("user-auth");
+	userAuth.classList.contains("logged-in") && document.documentElement.classList.add("logged-in");
+</script>
+
+<div id="user-auth" class:list={["flex gap-8 items-center z-10 relative", user && "logged-in"]}>
+	<span class="hidden logged-in:block">{user?.first_name}</span>
+	<Button id="login-modal-button" class="small hidden lg:flex will-change-transform">
+		<div class="flex flex-col items-center justify-end translate-y-3 logged-in:-translate-y-2.5 transition-transform duration-300 ease-easeOutCubic">
+			<span class="opacity-100 logged-in:opacity-0 transition-opacity duration-300 ease-easeOutCubic">Login</span>
+			<span class="opacity-0 logged-in:opacity-100 transition-opacity duration-300 ease-easeOutCubic">Logout</span>
+		</div>
+	</Button>
+</div>

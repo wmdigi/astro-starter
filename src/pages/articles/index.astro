@@ -1,0 +1,38 @@
+---
+import Layout from "@src/layouts/Layout.astro";
+import ResourceCard from "@src/components/ResourceCard.astro";
+import placeholder from "@images/placeholder.jpg";
+
+const article = {
+		title: "How to Build a Website",
+		date: "2024-01-01",
+		author: { first_name: "Wondy", last_name: "Maker" },
+		description: "Learn how to build a website from scratch using HTML, CSS, and JavaScript.",
+		cover: placeholder,
+		slug: "how-to-build-a-website",
+	}
+
+const articles = Array(4).fill(article);
+---
+
+<Layout title="Articles">
+	<section id="hero" class="pt-hero w-full h-svh">
+		<div class="container flex flex-col items-start justify-start gap-8 md:gap-16">
+			<h2 data-split-text>Articles</h2>
+			<div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 place-items-stretch overflow-hidden">
+				{articles.map(({ title, date, author, description, cover, slug }) => (
+					<ResourceCard
+						title={title}
+						date={date}
+						author={author}
+						description={description}
+						cover={cover}
+						slug={slug}
+						data-split-cards
+						class="translate-y-full"
+					/>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>

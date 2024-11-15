@@ -1,19 +1,11 @@
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/inter/600.css";
-@import "@fontsource/inter/700.css";
-
-/* Custom fonts from FontSource
-@import "@fontsource/chakra-petch/500.css";
-@import "@fontsource/chakra-petch/600.css";
-*/
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+
+
 html {
-	font-family: "Inter", system-ui, sans-serif;
+	font-family: "codec-pro", system-ui, sans-serif;
 	scrollbar-gutter: stable;
 	overflow: clip scroll;
 	touch-action: pan-y;
@@ -29,6 +21,20 @@ body {
 	@apply flex min-h-[100dvh] flex-col;
 }
 
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-kerning: none;
+	-webkit-text-rendering: optimizeSpeed;
+	text-rendering: optimizeSpeed;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+}
+
 /* Custom font override
 .font-inter {
 	font-family: Inter, system-ui, sans-serif;
@@ -40,6 +46,10 @@ body {
 	touch-action: none;
 }
 
+input:-internal-autofill-selected {
+	background-color: transparent !important;
+}
+
 /* Global variables */
 :root {
 	--navbar-height-closed: 100px;
@@ -48,7 +58,7 @@ body {
 
 @layer components {
 	section {
-		@apply py-[28px] sm:py-[36px] md:py-[48px] lg:py-[64px];
+		@apply py-7 sm:py-9 md:py-12 lg:py-16;
 	}
 
 	h1,
@@ -57,6 +67,22 @@ body {
 	h4,
 	h5 {
 		@apply font-bold leading-normal;
+	}
+
+	h1 {
+		@apply text-[29.5vw]/[75%] md:text-[30.15vw]/[75%] -tracking-[0.2vw] md:-tracking-[0.5vw];
+	}
+
+	h2 {
+		@apply text-[clamp(6.25rem,-7.5rem+25vw,20rem)]/[80%];
+	}
+
+	h4 {
+		@apply text-[clamp(3rem,2rem+2.667vw,4rem)]/[80%];
+	}
+
+	h5 {
+		@apply text-[clamp(2.5rem,1.5rem+1.333vw,3rem)]/[80%];
 	}
 
 	.section-title {
@@ -68,19 +94,19 @@ body {
 	}
 
 	.container {
-		@apply mx-auto w-full max-w-[1280px] px-4 sm:px-8;
+		@apply mx-auto w-full max-w-container px-4 sm:px-8;
 	}
 
 	.max-w-container {
-		@apply mx-auto w-full max-w-[1216px];
+		@apply mx-auto w-full max-w-[120rem];
 	}
 
 	.button {
-		@apply h-[50px] lg:h-[64px] bg-sky-400 hover:bg-sky-500 active:bg-sky-600 text-black px-[48px] flex items-center justify-center uppercase font-medium transition-colors duration-200 ease-easeOutCubic;
+		@apply h-12 lg:h-16 bg-black dark:bg-white dark:hover:bg-transparent hover:bg-transparent active:bg-sky-600 text-white dark:text-black hover:text-black dark:hover:text-white border border-black dark:border-white rounded-full px-12 flex items-center justify-center uppercase font-medium transition-default;
 	}
 
 	.button.small {
-		@apply h-[50px] px-[24px];
+		@apply h-12 px-6;
 	}
 
 	.pt-hero {
@@ -94,7 +120,11 @@ body {
 
 	/* Helper global hover effect */
 	.hover {
-		@apply hover:!opacity-60 transition-opacity duration-150 ease-in-out;
+		@apply hover:!opacity-60 transition-opacity duration-300 ease-easeOutCubic;
+	}
+
+	.transition-default {
+		@apply transition-colors duration-300 ease-easeOutCubic;
 	}
 
 	/* HR */

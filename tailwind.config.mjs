@@ -47,8 +47,17 @@ export default {
 				addVariant('mounted', [
 					'&.mounted',
 					'.mounted &'
+				]),
+				addVariant('is-safari', [
+					'&.is-safari',
+					'.is-safari &'
+				]),
+				addVariant('logged-in', [
+					'&.logged-in',
+					'.logged-in &'
 				])
 		}),
-		require('@tailwindcss/forms')
+		require('@tailwindcss/forms'),
+		require('tailwindcss-motion')
 	],
 }

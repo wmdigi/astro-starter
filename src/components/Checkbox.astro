@@ -11,9 +11,8 @@ const lightClasses = "border-white/30 hover:border-white/60 focus:ring-lime-400 
 		aria-describedby="comments-description"
 		name={name}
 		type="checkbox"
-		class={`h-4 w-4 bg-transparent text-lime-600 focus:ring-lime-400 focus:ring-offset-0 
-		${theme ? (theme === "dark" ? darkClasses : lightClasses) : darkClasses + " " + lightClasses}
-		`}
+		class:list={['h-4 w-4 bg-transparent text-lime-600 focus:ring-lime-400 focus:ring-offset-0', 
+		theme ? (theme === "dark" ? darkClasses : lightClasses) : darkClasses + " " + lightClasses]}
 	/>
 	<label for={id}><slot /></label>
 </div>

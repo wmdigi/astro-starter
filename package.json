@@ -10,23 +10,26 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/tailwind": "^5.1.2",
-    "@astrojs/ts-plugin": "^1.10.4",
-    "@astrojs/vercel": "8.0.0-beta.3",
+    "@astrojs/check": "0.9.4",
+    "@astrojs/tailwind": "5.1.2",
+    "@astrojs/ts-plugin": "1.10.4",
+    "@astrojs/vercel": "8.0.0-beta.4",
     "@fontsource/inter": "^5.1.0",
     "@tailwindcss/forms": "^0.5.9",
     "@vercel/speed-insights": "^1.1.0",
-    "astro": "5.0.0-beta.7",
+    "astro": "5.0.0-beta.8",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "tailwindcss": "^3.4.14",
+    "tailwindcss-motion": "^0.4.1-beta",
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "@astrojs/partytown": "^2.1.2",
-    "@astrojs/sitemap": "^3.2.1",
-    "@wmdigi/dom": "^1.0.2"
+    "@astrojs/partytown": "2.1.2",
+    "@astrojs/sitemap": "3.2.1",
+    "@directus/sdk": "^18.0.0",
+    "@wmdigi/dom": "^1.1.1",
+    "gsap": "./gsap-bonus.tgz"
   }
 }

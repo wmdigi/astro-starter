@@ -1,7 +1,7 @@
 ---
-const { class: className = "w-[32px]" } = Astro.props;
+const { ...props } = Astro.props;
 ---
 
-<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class={className}>
+<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
 		<path d="M64 31.0096V30.8851H63.8755C46.8839 30.8851 33.1149 17.1161 33.1149 0.124514V0H32.9904H31.0041H30.8796V0.124514C30.8796 17.1161 17.1104 30.8851 0.124514 30.8851H0V31.0096V32.9959V33.1204H0.124514C17.1159 33.1204 30.8796 46.8896 30.8796 63.8755V64H31.0041H32.9904H33.1149V63.8755C33.1149 46.8841 46.8839 33.1204 63.8755 33.1204H64V32.9959V31.0096Z" fill="currentColor"/>
 </svg>

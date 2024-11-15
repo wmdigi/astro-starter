@@ -1,8 +1,11 @@
 ---
 import { navLinks } from "@data";
 import { MagnifyingGlassIcon } from "@icons";
-import { Logo, ThemeToggle, Link } from "@components";
+import { Logo, ThemeToggle, Link, Button } from "@components";
 import { getCurrentUrlPath } from "@utils";
+import UserAuth from "@components/UserAuth.astro";
+import CartIcon from "@icons/CartIcon.astro";
+import Cart from "@components/Cart.astro";
 
 const currentPath = new URL(Astro.request.url).pathname;
 ---
@@ -10,13 +13,13 @@ const currentPath = new URL(Astro.request.url).pathname;
 <nav
 	class="navigation flex flex-col justify-between fixed top-0 left-0 w-full h-[--navbar-height] z-[100] onload:bg-transparent mounted:transition-all mounted:duration-500 mounted:ease-easeOutCubic bg-white dark:bg-[#131313]"
 >
-	<div class="container h-full flex items-center justify-between relative">
-		<a href="/" class="hover slide-in-initial block max-h-[--navigation-height-closed] z-10">
-			<Logo />
+	<div class="container max-w-container h-full flex items-center justify-between relative">
+		<a href="/" class="group/logo block max-h-[--navigation-height-closed] z-10">
+			<Logo class="w-8 group-hover/logo:motion-rotate-in-[0.5turn]" />
 			<span class="sr-only">Home</span>
 		</a>
 		<ul
-			class="navigation-links backdrop-blur-md delay-0 opacity-0 lg:opacity-100 bg-white dark:bg-[#131313] transition-all duration-500 ease-easeOutCubic lg:transparent flex flex-col lg:flex-row gap-8 lg:relative lg:pointer-events-auto pointer-events-none h-[94px] absolute lg:w-auto w-full lg:h-full z-0 inset-0 items-center justify-center"
+			class="lg:top-1/2 lg:-translate-y-1/2 navigation-links backdrop-blur-md delay-0 opacity-0 lg:opacity-100 bg-white dark:bg-[#131313] transition-all duration-500 ease-easeOutCubic lg:transparent flex flex-col lg:flex-row gap-8 lg:pointer-events-auto pointer-events-none h-24 absolute lg:w-auto w-full lg:h-full z-0 inset-0 items-center justify-center"
 		>
 			{
 				navLinks.map(({ name, url }, index) => (
@@ -43,12 +46,22 @@ const currentPath = new URL(Astro.request.url).pathname;
 			</li>
 		</ul>
 		<div class="flex gap-8 items-center z-10 relative">
-			<a href="/search" class="hover slide-in-initial onload:[--delay:700ms]">
+			<!-- <a href="/search" class="hover slide-in-initial onload:[--delay:700ms]">
 				<MagnifyingGlassIcon />
 				<span class="sr-only">Search</span>
-			</a>
+			</a> -->
 			<ThemeToggle class="slide-in-initial onload:[--delay:800ms]" />
-			<Link href="/contact" class="slide-in-initial [--delay:900ms] small hidden lg:flex">Contact</Link>
+			<!-- <Cart server:defer>
+				<CartIcon slot="fallback" class="w-8 text-black dark:text-white" />
+			</Cart> -->
+			<!-- <UserAuth server:defer>
+				<Button slot="fallback" id="login-modal-button" class="small hidden lg:flex will-change-transform">
+					<div class="flex flex-col items-center justify-end translate-y-3 logged-in:-translate-y-2.5 transition-transform duration-300 ease-easeOutCubic">
+						<span class="opacity-100 logged-in:opacity-0 transition-opacity duration-300 ease-easeOutCubic">Login</span>
+						<span class="opacity-0 logged-in:opacity-100 transition-opacity duration-300 ease-easeOutCubic">Logout</span>
+					</div>
+				</Button>
+			</UserAuth> -->
 		</div>
 	</div>
 </nav>

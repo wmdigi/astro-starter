@@ -2,8 +2,19 @@
 const { class: className = "" } = Astro.props;
 ---
 
-<button id="theme-toggle-btn" class={`hover flex ${className}`} onclick="document.documentElement.classList.toggle('dark')">
-	<svg width="10" height="26" viewBox="0 0 10 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<script>
+	import { $ } from "@wmdigi/dom";
+
+	$("#theme-toggle-button").on("click", () => {
+		$(document.documentElement).toggleClass("dark");
+
+		// Save the theme preference to localStorage
+		$(document.documentElement).hasClass("dark") ? localStorage.setItem("theme", "dark") : localStorage.setItem("theme", "light");
+	})
+</script>
+
+<button id="theme-toggle-button" class:list={['group/toggle flex will-change-transform', className]}>
+	<svg width="10" height="26" viewBox="0 0 10 26" fill="none" xmlns="http://www.w3.org/2000/svg" class="group-hover/toggle:-translate-x-0.5 transition-transform duration-300 ease-easeOutCubic">
 	<path d="M10 0H5.2L0 5.2V20.8L5.2 26H10V24H7C4.23858 24 2 21.7614 2 19V7C2 4.23858 4.23858 2 7 2H10V0Z" fill="currentColor"/>
 	</svg>
 	<div class="toggle-wrapper w-[24px] h-[26px] flex justify-center items-start overflow-hidden">
@@ -18,7 +29,7 @@ const { class: className = "" } = Astro.props;
 		</svg>
 	</div>
 	</div>
-	<svg width="10" height="26" viewBox="0 0 10 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<svg width="10" height="26" viewBox="0 0 10 26" fill="none" xmlns="http://www.w3.org/2000/svg" class="group-hover/toggle:translate-x-0.5 transition-transform duration-300 ease-easeOutCubic">
 	<path d="M0 0H4.8L10 5.2V20.8L4.8 26H0V24H3C5.76142 24 8 21.7614 8 19V7C8 4.23858 5.76142 2 3 2H0V0Z" fill="currentColor"/>
 	</svg>
 </button>

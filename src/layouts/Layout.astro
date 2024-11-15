@@ -1,8 +1,12 @@
 ---
 import Navigation from "@components/Navigation.astro";
+import Modal from "@components/Modal.astro";
+import Login from "@components/Login.astro";
+import Register from "@components/Register.astro";
 import Footer from "@components/Footer.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 
+import "@styles/typography.css";
 import "@styles/global.css";
 
 const {
@@ -18,7 +22,7 @@ const {
 
 <html
 	lang={lang}
-	class="dark:bg-[#131313] text-black dark:text-white mounted:transition-colors mounted:duration-500 mounted:ease-easeOutCubic onload"
+	class:list={["dark:bg-[#131313] text-black dark:text-white mounted:transition-colors mounted:duration-500 mounted:ease-easeOutCubic onload"]}
 >
 	<head>
 		<meta charset="UTF-8" />
@@ -51,8 +55,9 @@ const {
 		<link href={`touchicon.png`} rel="apple-touch-icon" />
 
 		<link rel="sitemap" href={`sitemap-index.xml`} />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="preload" href="/fonts/codec-pro-news.woff" as="font" type="font/woff" crossorigin />
+		<link rel="preload" href="/fonts/codec-pro-regular.woff" as="font" type="font/woff" crossorigin />
+		<link rel="preload" href="/fonts/codec-pro-bold.woff" as="font" type="font/woff" crossorigin />
 
 		<title>{page_name} — {title}</title>
 
@@ -71,6 +76,9 @@ const {
 		</script>
 
 		<script is:inline src="/init.js"></script>
+		<script>
+			import "@lib/animation"
+		</script>
 
 		<base href={import.meta.env.BASE_URL} />
 	</head>
@@ -78,6 +86,12 @@ const {
 	<body>
 		<SpeedInsights />
 		<Navigation />
+		<Modal id="login">
+			<Login slot="modal" />
+		</Modal>
+		<Modal id="register">
+			<Register slot="modal" />
+		</Modal>
 		<main class="flex flex-col overflow-x-clip">
 			<slot />
 		</main>

@@ -1,18 +1,12 @@
 ---
-import { Layout } from "@components";
+import Layout from "@src/layouts/Layout.astro";
 ---
 
-<script>
-	import { $ } from "@wmdigi/dom";
-
-	$("#btn").on("click", () => {
-		alert("Hello World");
-	});
-</script>
-
 <Layout title="Homepage">
-	<section id="hero" class="pt-hero">
-		<div class="container">Homepage</div>
-		<button id="btn">ClickMe</button>
+	<section id="hero" class="pt-hero pb-0 w-full h-svh flex flex-col items-start justify-end">
+		<div class="container">
+			
+		</div>
+		<h1 data-split-text>Starter</h1>
 	</section>
 </Layout>

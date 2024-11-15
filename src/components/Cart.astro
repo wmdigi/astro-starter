@@ -1,0 +1,12 @@
+---
+import CartIcon from "@icons/CartIcon.astro";
+
+const cartCount = 1
+---
+
+<a href="/cart" class="relative">
+	<CartIcon class:list={["w-8 text-black dark:text-white"]} />
+	<span class="absolute top-0 right-0 translate-x-1/3 -translate-y-1/3 w-4 h-4 flex items-center justify-center text-xs text-white dark:text-black bg-black dark:bg-white rounded-full">
+		{cartCount}
+	</span>
+</a>

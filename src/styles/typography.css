@@ -1,0 +1,47 @@
+@font-face {
+	font-family: "codec-pro";
+	src: url("/fonts/codec-pro-regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "codec-pro";
+	src: url("/fonts/codec-pro-bold.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "codec-pro";
+	src: url("/fonts/codec-pro-thin.woff") format("woff");
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "codec-pro";
+	src: url("/fonts/codec-pro-news.woff") format("woff");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "afrah";
+	src: url("/fonts/afrah-regular.otf") format("opentype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "afrah";
+	src: url("/fonts/afrah-bold.otf") format("opentype");
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}

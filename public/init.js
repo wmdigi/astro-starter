@@ -2,7 +2,7 @@ const MODULE = "init()";
 const TIMEOUT_MINUTES = 1; // minutes before the initial visit is reset
 const INITIAL_CLASS_DURATION_MS = 1500;
 const ONLOAD_CLASS_DURATION_MS = 800;
-const DARK_MODE = false;
+const DARK_MODE = true;
 
 function shouldSetInitialState() {
 	const currentTime = new Date().getTime();
@@ -43,7 +43,7 @@ function setTheme() {
 	}
 
 	localStorage.setItem("theme", theme);
-	// console.log(MODULE, "Theme: " + theme);
+	//console.log(MODULE, "Theme: " + theme);
 }
 
 function init() {
