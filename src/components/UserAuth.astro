@@ -42,7 +42,7 @@ const locals = Astro.locals
 			return
 		}
 		$("#login-modal").addClass("opened");
-		$(".modal").array.filter((m: HTMLElement) => m !== $("#login-modal")).forEach((m: HTMLElement) => $(m).removeClass("opened"));
+		$(".modal").array.filter((m: HTMLElement) => m !== $("#login-modal").first).forEach((m: HTMLElement) => $(m).removeClass("opened"));
 	});
 </script>
 
