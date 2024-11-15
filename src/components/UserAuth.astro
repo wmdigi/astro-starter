@@ -29,10 +29,10 @@ let user: any;
 //   }
 ---
 
-<script is:inline>
+<!-- <script is:inline>
 	const userAuth = document.getElementById("user-auth");
 	userAuth.classList.contains("logged-in") && document.documentElement.classList.add("logged-in");
-</script>
+</script> -->
 
 <div id="user-auth" class:list={["flex gap-8 items-center z-10 relative", user && "logged-in"]}>
 	<span class="hidden logged-in:block">{user?.first_name}</span>
