@@ -5,9 +5,6 @@ const client = createDirectus('https://wiktor.wondermakers.dev').with(authentica
 
 export const onRequest = defineMiddleware(async (context, next) => {
 
-	console.log("Context[Middleware.ts]: ", context.locals)
-	console.log("Cookies[Middleware.ts]: ", context.cookies);
-
 	// Authentification
 	const access_token =  context.cookies.get("access_token")?.value
 	//const current_refresh_token =  context.cookies.get("refresh_token")?.value
@@ -43,10 +40,13 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		  } catch (error) {
 			console.error("Auth error:", error);
 		  }
+	} else {
+		console.log("No access token[Middleware.ts]: ", access_token)
 	}
 
 	// Cart
 	const cart = JSON.parse(context.cookies.get('cart')?.value || '[]');
+	console.log("Cart[Middleware.ts]: ", cart)
 	context.locals.cart = cart;
 
  	return next();

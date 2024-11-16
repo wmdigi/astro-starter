@@ -1,39 +1,87 @@
 ---
+export const prerender = false;
+
 import { Input } from "@components";
-import { cart  } from "@lib/store";
 import Layout from "@src/layouts/Layout.astro";
 
-const products = cart.get().products;
+import { getGroupedProducts } from "@lib/utils";
+
+const locals = Astro.locals;
+const products = getGroupedProducts(locals.cart);
 ---
 
 <script>
 	import { $ } from "@wmdigi/dom";
 	import { cart } from "@lib/store";
+	import { actions } from "astro:actions";
+	import { getGroupedProducts } from "@lib/utils";
 
 	// Increase product count
-	// $("#cart-product-count-increase").on("click", () => {
-	// 	const id = $("#cart-product-count").closest("[id]").id.split("-")[1];
-		
+	$("#cart-product-count-increase").on("click", async ({ target }) => {
+		const { data, error } = await actions.cart.addToCart({ product: target.dataset.slug });
+
+		if (data?.success) {
+			const groupedProducts = getGroupedProducts(data.data.cart);
+			cart.set({ ...cart.get(), total: data.data.cart.length, products: groupedProducts });
+			const product = groupedProducts.find((p) => p.slug === target.dataset.slug);
+			$(`#cart-product-count-input[data-slug=${target.dataset.slug}]`).first.value = product?.count;
+		}
+	});
+
+	// Increase product count
+	$("#cart-product-count-decrease").on("click", async ({ target }) => {
+		const { data, error } = await actions.cart.removeFromCart({ product: target.dataset.slug });
+
+		if (data?.success) {
+			const groupedProducts = getGroupedProducts(data.data.cart);
+			cart.set({ ...cart.get(), total: data.data.cart.length, products: groupedProducts });
+			const product = groupedProducts.find((p) => p.slug === target.dataset.slug);
+			$(`#cart-product-count-input[data-slug=${target.dataset.slug}]`).first.value = product?.count || 0;
+		}
+	});
+
+	// Change product count mauanlly
+	// $("#cart-product-count-input").on("click", async ({ target }) => {
+	// 	const { data, error } = await actions.cart.removeFromCart({ product: target.dataset.slug });
+
+	// 	if (data?.success) {
+	// 		const groupedProducts = getGroupedProducts(data.data.cart);
+	// 		const product = groupedProducts.find((p) => p.slug === target.dataset.slug);
+	// 		$(`#cart-product-count-input[data-slug=${target.dataset.slug}]`).first.value = product?.count || 0;
+	// 	}
 	// });
+
+	cart.subscribe((cart) => {
+		// Total price of cart
+		const totalPrice = cart.products.reduce((acc, { price, count }) => acc + Number(price) * Number(count), 0).toFixed(2);
+		$(`#product-summary`).first.children[2].innerHTML = `$${totalPrice}`;
+	});
 </script>
 
 <Layout title="Cart">
-	<section id="hero" class="pt-hero w-full h-svh">
+	<section id="hero" class="pt-hero w-full min-h-svh">
 		<div class="container flex flex-col items-start justify-start gap-8 md:gap-16">
 			<h2 data-split-text>Cart</h2>
 			<div class="w-full h-full flex flex-col items-start justify-start gap-8 overflow-hidden">
 				{products.length > 0 ? (
-					products.map(({ id, title, price }) => (
-					  <div id={`product-${id}`} class="w-full flex flex-row items-center justify-start gap-8">
-						<h5 class="font-light">{title}</h5>
-						<div id="cart-product-count" class="flex flex-row items-stretch justify-center border border-black rounded-full overflow-hidden">
-							<button id="cart-product-count-decrease" class="px-4 bg-transparent hover:bg-black text-black hover:text-white text-2xl border-r border-black transition-default">-</button>
-							<Input type="number" value="1" class="!w-[4rem] h-full rounded-none !border-transparent !text-black !text-center" />
-							<button id="cart-product-count-increase" class="px-4 bg-transparent hover:bg-black text-black hover:text-white text-2xl border-l border-black transition-default">+</button>
-						</div>
-						<h5 class="">${price}</h5>
-					  </div>
-					))
+					<>
+						{products.map(({ id, title, price, count, slug }) => (
+						  <div id={`product-${id}`} class="w-full grid grid-cols-[1fr_1fr_1fr_1fr] place-items-start items-center gap-8">
+							<h5 class="font-light">{title}</h5>
+							<div id="cart-product-count" class="flex h-14 flex-row items-center p-1 justify-center border border-black dark:border-white rounded-full overflow-hidden">
+								<button id="cart-product-count-decrease" data-slug={slug} class="px-4 aspect-square h-full bg-black dark:bg-white hover:bg-white dark:hover:bg-black text-white dark:text-black hover:text-black dark:hover:text-white text-2xl border border-black dark:border-white rounded-full transition-default">-</button>
+								<Input id="cart-product-count-input" data-slug={slug} type="number" value={count} class="!w-[4rem] h-full rounded-none !border-transparent !text-black dark:!text-white !text-center" />
+								<button id="cart-product-count-increase" data-slug={slug} class="px-4 aspect-square h-full bg-black dark:bg-white hover:bg-white dark:hover:bg-black text-white dark:text-black hover:text-black dark:hover:text-white text-2xl border border-black dark:border-white rounded-full transition-default">+</button>
+							</div>
+							<h5 class="">${price}</h5>
+						  </div>
+						))}
+						<div id="product-summary" class="w-full grid grid-cols-[1fr_1fr_1fr_1fr] place-items-start items-center gap-8 pt-16 border-t border-black/20 dark:border-white/20">
+							<h5>Summary</h5>
+							<div></div>
+							<h5 id="product-summary-price">$0</h5>
+						 </div>
+					</>
 				  ) : (
 					<div class="w-full h-full py-16 flex items-center justify-center">
 					  <h5>Cart is empty</h5>

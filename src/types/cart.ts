@@ -5,11 +5,13 @@ export interface Product {
 	title: string,
 	description?: string,
 	price: number | string,
+	count?: number,
 	cover: ImageMetadata,
 	slug: string,
 }
 
 export interface Cart {
 	profile?: User;
+	total: number;
 	products: Product[];
 }

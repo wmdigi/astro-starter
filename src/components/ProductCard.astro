@@ -6,30 +6,36 @@ const { title, slug, description, price, cover, class: className, ...props } = A
 ---
 
 <script>
-	import { $ } from "@wmdigi/dom";
-	import { cart } from "@lib/store";
-	import type { Product } from "@src/types/cart";
-	import { products } from "@lib/data";
-	import { actions } from "astro:actions";
+    import { $ } from "@wmdigi/dom";
+    import { cart } from "@lib/store";
+    import type { Product } from "@src/types/cart";
+    import { products } from "@lib/data";
+    import { actions } from "astro:actions";
+	import { getGroupedProducts } from "@lib/utils";
 
-	$(".card").array.forEach((card: HTMLElement) => {
-		$(card).on("click", async () => {
-			const product = products.find((p: Product) => p.slug === card.dataset.slug);
-			if (!product) return;
+    $(".card").array.forEach((card: HTMLElement) => {
+        $(card).on("click", async () => {
+            const product = products.find((p: Product) => p.slug === card.dataset.slug);
+            if (!product) return;
 
-			const { data, error } = await actions.cart.addToCart({ product: product?.slug });
+            const { data, error } = await actions.cart.addToCart({ product: product?.slug });
 
-			if (data?.success) {
-				cart.set({ ...cart.get(), products: [...cart.get().products, product] });
-			}
-			// const product = products.find((p: Product) => p.slug === card.dataset.slug);
+            if (data?.success) {
+                // Get cart data from response (now it's an object with counts)
+                const cartData = data.data.cart;
+				const groupedProducts = getGroupedProducts(data.data.cart);
 
-			// if (!product) return;
+                // Update store
+                cart.set({ 
+                    ...cart.get(),
+					total: cartData.length,
+                    products: groupedProducts 
+                });
 
-			// cart.set({ ...cart.get(), products: [...cart.get().products, product] });
-			// console.log(cart.get());
-		});
-	})
+				console.log("Cart Store Updated[ProductCard.astro]: ", cart.get());
+            }
+        });
+    });
 </script>
 
 <button

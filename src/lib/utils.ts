@@ -1,3 +1,4 @@
+import { products } from "@lib/data";
 import { log, error } from "./logger";
 
 const MODULE: string = "Utils";
@@ -76,3 +77,19 @@ export const toggleDarkMode = (): void => {
 };
 
 export const isDarkModeEnabled: boolean = isBrowser ? localStorage.getItem("theme") === "light" : false;
+
+export const getGroupedProducts = (slugs: string[]) => {
+	// Get counts for each slug
+	const groupCounts = slugs.reduce((acc, slug) => {
+		acc[slug] = (acc[slug] || 0) + 1;
+		return acc;
+	}, {});
+	
+	// Map to full products with counts
+	return products
+		.filter(p => groupCounts[p.slug])
+		.map(p => ({
+			...p,
+			count: groupCounts[p.slug]
+		}));
+ }
