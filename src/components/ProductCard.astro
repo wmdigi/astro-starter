@@ -10,15 +10,24 @@ const { title, slug, description, price, cover, class: className, ...props } = A
 	import { cart } from "@lib/store";
 	import type { Product } from "@src/types/cart";
 	import { products } from "@lib/data";
+	import { actions } from "astro:actions";
 
 	$(".card").array.forEach((card: HTMLElement) => {
-		$(card).on("click", () => {
+		$(card).on("click", async () => {
 			const product = products.find((p: Product) => p.slug === card.dataset.slug);
-
 			if (!product) return;
-			
-			cart.set({ ...cart.get(), products: [...cart.get().products, product] });
-			console.log(cart.get());
+
+			const { data, error } = await actions.cart.addToCart({ product: product?.slug });
+
+			if (data?.success) {
+				cart.set({ ...cart.get(), products: [...cart.get().products, product] });
+			}
+			// const product = products.find((p: Product) => p.slug === card.dataset.slug);
+
+			// if (!product) return;
+
+			// cart.set({ ...cart.get(), products: [...cart.get().products, product] });
+			// console.log(cart.get());
 		});
 	})
 </script>

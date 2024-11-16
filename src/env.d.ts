@@ -3,6 +3,7 @@
 
 declare namespace App {
     interface Locals {
-        user: any
+        user: any;
+		cart: any;
     }
 }
