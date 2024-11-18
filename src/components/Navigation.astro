@@ -11,7 +11,7 @@ const currentPath = new URL(Astro.request.url).pathname;
 ---
 
 <nav
-	transition:persist="true"
+	id="navigation"
 	class="navigation flex flex-col justify-between fixed top-0 left-0 w-full h-[--navbar-height] z-[100] bg-white/20 dark:bg-[#131313]/20 backdrop-blur mounted:transition-all mounted:duration-500 mounted:ease-easeOutCubic"
 >
 	<div class="container max-w-container h-full flex items-center justify-between relative">

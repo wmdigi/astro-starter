@@ -7,6 +7,7 @@ import Footer from "@components/Footer.astro";
 
 import "@styles/typography.css";
 import "@styles/global.css";
+import { ClientRouter } from "astro:transitions";
 
 const {
 	page_name = "Astro Starter",
@@ -73,6 +74,8 @@ const {
 				f.parentNode?.insertBefore(j, f);
 			})(window, document, "script", "dataLayer", "GTM-XXXXXX");
 		</script>
+
+		<!-- <ClientRouter /> -->
 
 		<script is:inline src="/init.js"></script>
 		<script>
