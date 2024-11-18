@@ -35,10 +35,11 @@ const locals = Astro.locals;
 
 <a id="cart" href="/cart" class="relative" data-cart={locals.cart.products}>
 	<CartIcon class:list={["w-8 text-black dark:text-white"]} />
-	<span
+	<div
 		id="cart-indicator"
 		class="absolute top-0 right-0 translate-x-1/3 -translate-y-1/3 w-5 h-5 flex items-center justify-center pt-px text-xs text-black bg-gradient rounded-full"
-	>
-		{locals.cart.products.length}
-	</span>
+		>
+		<span class="server-loaded:opacity-100 opacity-0">{locals.cart.products.length}</span>
+	</div>
 </a>
+<!-- opacity-0 server-loaded:opacity-100 server-loaded:motion-preset-expand motion-delay-300 -->
