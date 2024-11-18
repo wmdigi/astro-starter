@@ -13,17 +13,21 @@ export const cart = {
 
 		const updatedCart = [...cart, product];
 
+		console.log("Updated cart[cart.ts/addToCart]: ", updatedCart);
+
 		context.cookies.set('cart', JSON.stringify(updatedCart), {
 			path: '/',
 		 	maxAge: 604800 // 7 days
 		});
 
-		context.locals.cart = updatedCart;
+		context.locals.cart.products = updatedCart;
 
 		return { 
 			success: true,
 			data: {
-				cart: updatedCart
+				cart: {
+					products: updatedCart
+				}
 			}
 		};
    }
@@ -43,20 +47,22 @@ export const cart = {
             ? [...cart.slice(0, indexToRemove), ...cart.slice(indexToRemove + 1)]
             : cart;
 
-        console.log("Updated cart[removeFromCart]: ", updatedCart);
+        console.log("Updated cart[cart.ts/removeFromCart]: ", updatedCart);
         
         context.cookies.set('cart', JSON.stringify(updatedCart), {
             path: '/',
             maxAge: 604800 // 7 days
         });
 
-        context.locals.cart = updatedCart;
+		context.locals.cart.products = updatedCart;
 
         return { 
             success: true,
             data: {
-                cart: updatedCart
-            }
+				cart: {
+					products: updatedCart
+				}
+			}
         };
     }
  }),	
@@ -70,22 +76,94 @@ export const cart = {
 
 		const updatedCart = cart.filter((item: string) => item !== product)
 
-		console.log("Updated cart[removeFromCart]: ", updatedCart)
+		console.log("Updated cart[cart.ts/removeFromCart]: ", updatedCart)
 		
 		context.cookies.set('cart', JSON.stringify(updatedCart), {
 			path: '/',
 		 	maxAge: 604800 // 7 days
 		});
 
-		context.locals.cart = updatedCart;
+		context.locals.cart.products = updatedCart;
 
 		return { 
 			success: true,
 			data: {
-				cart: updatedCart
+				cart: {
+					products: updatedCart
+				}
 			}
 		};
    }
- })
+ }),
+ checkout: defineAction({
+	accept: 'form',
+	input: z.object({
+		first_name: z.string(),
+		last_name: z.string(),
+		email: z.string().email(),
+		address: z.string(),
+		city: z.string(),
+		zip: z.string(),
+		terms: z.string(),
+  	}),
+ 	handler: async ({ first_name, last_name, email, address, city, zip, terms }, context) => {
+
+		console.log("Checkout![cart.ts/checkout]")
+
+		console.log(context.locals.cart)
+
+		const order = {
+			products: context.locals.cart.products,
+			info: {
+				first_name,
+				last_name,
+				email,
+				address,
+				city,
+				zip,
+				terms
+			}
+		}
+
+		console.log("Order completed![cart.ts/checkout]: ", order)
+
+		context.locals.cart.summary = order;
+		context.locals.cart.products = [];
+		
+		context.cookies.set('cart', JSON.stringify([]), {
+			path: '/',
+		 	maxAge: 604800 // 7 days
+		});
+
+		context.cookies.set('order', JSON.stringify(order), {
+			path: '/',
+		 	maxAge: 604800 // 7 days
+		});
+
+		return { 
+			success: true,
+			data: {
+				summary: order
+			}
+		};
+   }
+ }),
+//  emptyCart: defineAction({
+//  	handler: async (_, context) => {
+
+// 		console.log("Cart is empty[cart.ts/emtpyCart]")
+
+// 		context.cookies.set('cart', "[]", {
+// 			path: '/',
+// 		 	maxAge: 604800 // 7 days
+// 		});
+
+// 		context.locals.cart = "[]"
+
+// 		return { 
+// 			success: true,
+// 		};
+//    }
+//  }),
 };
 

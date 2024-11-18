@@ -1,33 +1,6 @@
 ---
 import Button from "@components/Button.astro";
 
-// import { createDirectus, rest, readMe, authentication, refresh } from '@directus/sdk';
-
-// const client = createDirectus('https://wiktor.wondermakers.dev').with(authentication()).with(rest());
-
-// const current_refresh_token =  Astro.cookies.get("refresh_token")?.value
-
-//let user: any;
-
-// try {
-// 	console.log("Refresh token [UserAuth.astro]: ", current_refresh_token)
-// 	const { access_token, refresh_token } = await client.request(refresh("json", current_refresh_token));
-// 	console.log("Refreshed access token [UserAuth.astro]: ", access_token)
-
-// 	if (!access_token || !refresh_token) return
-
-// 	client.setToken(access_token);
-// 	Astro.cookies.set("refresh_token", refresh_token)
-
-// 	user = await client.request(readMe());
-
-// 	console.log("Relogged in [UserAuth.astro]: ", user)
-// 	//context.locals.user = user;
-// 	//console.log("Relogged in[Middleware.ts]: ", context.locals.user)
-//   } catch (error) {
-// 	console.error("Auth Error [UserAuth.astro]:", error);
-//   }
-
 const locals = Astro.locals
 ---
 
@@ -56,6 +29,10 @@ const locals = Astro.locals
 		event.preventDefault();
 		const formData = new FormData($("#user-auth").first as HTMLFormElement); // ??
 		const { data, error } = await actions.user.logoutUser(formData);
+
+		if (data?.success) {
+			
+		}
 	});
 </script>
 

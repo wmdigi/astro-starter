@@ -23,6 +23,9 @@ export default {
 			colors: {
 				default: "#000"
 			},
+			backgroundImage: {
+				"gradient": "linear-gradient(117deg, #FF0 0%, #D4FB08 100%)"
+			},
 			transitionTimingFunction: {
 				easeOutCubic: 'cubic-bezier(0.215, 0.610, 0.355, 1.000)',
 				easeInCubic: 'cubic-bezier(0.550, 0.055, 0.675, 0.190)',

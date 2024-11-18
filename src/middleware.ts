@@ -47,7 +47,17 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	// Cart
 	const cart = JSON.parse(context.cookies.get('cart')?.value || '[]');
 	console.log("Cart[Middleware.ts]: ", cart)
-	context.locals.cart = cart;
+	console.log("Cart Context[Middleware.ts]: ", context.locals)
+
+	const order = JSON.parse(context.cookies.get('order')?.value || '{}');
+
+	context.locals.cart = { ...context.locals.cart, summary: order, products: cart };
+
+	// Scrape order cookies if we are not in the checkout/summary page
+	if (!context.url.pathname.includes("checkout") && !context.url.pathname.includes("checkout") && context.cookies.get('order')?.value) {
+		context.cookies.delete("order");
+		console.log("Scrape order cookies[Middleware.ts]: ", context.cookies.get('order')?.value)
+	}
 
  	return next();
 });

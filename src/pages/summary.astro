@@ -1,13 +1,13 @@
 ---
 import Layout from "@src/layouts/Layout.astro";
-import CartList from "@components/CartList.astro";
+import SummaryList from "@components/SummaryList.astro";
 ---
 
-<Layout title="Cart">
+<Layout title="Checkout">
 	<section id="hero" class="pt-hero w-full min-h-svh">
 		<div class="container flex flex-col items-start justify-start gap-8 md:gap-16">
-			<h2 data-split-text>Cart</h2>
-			<CartList server:defer />
+			<h2 data-split-text>Summary</h2>
+			<SummaryList server:defer />
 		</div>
 	</section>
 </Layout>

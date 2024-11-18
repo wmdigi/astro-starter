@@ -17,7 +17,7 @@ const useInView = () => {
 
 		splitText.chars.forEach((char: any) => {
 			const wrapper = document.createElement("div");
-			wrapper.className = "overflow-hidden";
+			wrapper.className = "overflow-x-clip";
 			char.parentNode?.insertBefore(wrapper, char);
 			wrapper.appendChild(char);
 		});

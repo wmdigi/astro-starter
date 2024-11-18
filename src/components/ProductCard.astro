@@ -23,12 +23,12 @@ const { title, slug, description, price, cover, class: className, ...props } = A
             if (data?.success) {
                 // Get cart data from response (now it's an object with counts)
                 const cartData = data.data.cart;
-				const groupedProducts = getGroupedProducts(data.data.cart);
+				const groupedProducts = getGroupedProducts(data.data.cart.products);
 
                 // Update store
                 cart.set({ 
                     ...cart.get(),
-					total: cartData.length,
+					total: cartData.products.length,
                     products: groupedProducts 
                 });
 

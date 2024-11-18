@@ -1,0 +1,28 @@
+---
+import { getGroupedProducts } from "@lib/utils";
+
+const summary = Astro.locals.cart.summary;
+const products = getGroupedProducts(summary.products);
+---
+
+<script>
+	import { $ } from "@wmdigi/dom";
+
+	$("#summary-list").addClass("server-loaded");
+</script>
+
+<div id="summary-list" class="w-full h-full flex flex-col items-start justify-start gap-8 md:gap-16 opacity-0 [.server-loaded&]:opacity-100 [.server-loaded&]:motion-preset-focus motion-delay-150">
+	<div class="col-span-full flex flex-col items-start justify-start gap-2 motion-preset-focus motion-delay-150">
+		<h5>Thanks for your order {summary.info.first_name}!</h5>
+		<p class="text-2xl">We will send the order to {summary.info.address} in {summary.info.city}, {summary.info.zip} asap!</p>
+	</div>
+	<div class="w-full h-full flex flex-col items-start justify-start gap-x-8 md:gap-x-16 gap-y-4 md:gap-y-8 motion-preset-focus motion-delay-150">
+		{products?.map(({ title, count, price, slug }) => (
+		  <div id={`product-${slug}`} class="w-full grid grid-cols-[1fr_1fr_1fr_1fr] place-items-start items-center gap-8">
+			<h5 class="font-light">{title}</h5>
+			<h5 class="">{count}x</h5>
+			<h5 class="">${price*count}</h5>
+		  </div>
+		))}
+	</div>
+</div>

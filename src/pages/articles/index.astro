@@ -2,6 +2,7 @@
 import Layout from "@src/layouts/Layout.astro";
 import ResourceCard from "@src/components/ResourceCard.astro";
 import placeholder from "@images/placeholder.jpg";
+import { getCollection } from "astro:content";
 
 const article = {
 		title: "How to Build a Website",
@@ -13,6 +14,8 @@ const article = {
 	}
 
 const articles = Array(4).fill(article);
+
+// const art = await getCollection("articles");
 ---
 
 <Layout title="Articles">
