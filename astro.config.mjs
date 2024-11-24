@@ -2,16 +2,18 @@ import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel";
 import sitemap from "@astrojs/sitemap";
+import dom from "@wmdigi/dom/astro";
 
 //import partytown from "@astrojs/partytown";
 
 const site = process.env.PUBLIC_SITE;
 
 export default defineConfig({
-    site,
-    base: "/",
-    integrations: [
-		tailwind(), 
+	site,
+	base: "/",
+	integrations: [
+		dom(),
+		tailwind(),
 		sitemap(),
 		// partytown(
 		// 	{
@@ -19,6 +21,6 @@ export default defineConfig({
 		// 	}
 		// ),
 	],
-    output: "static",
-    adapter: vercel(),
+	output: "static",
+	adapter: vercel(),
 });

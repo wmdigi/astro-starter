@@ -1,5 +1,6 @@
 import { defineMiddleware } from 'astro:middleware';
 import { createDirectus, rest, readMe, authentication, refresh } from '@directus/sdk';
+import {log, error} from "@log"
 
 const client = createDirectus('https://wiktor.wondermakers.dev').with(authentication()).with(rest());
 
@@ -28,35 +29,37 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
 			// 	const user = await client.request(readMe());
 			// 	context.locals.user = user;
-			// 	console.log("Relogged in[Middleware.ts]: ", context.locals.user)
+			// 	log("Relogged in[Middleware.ts]: ", context.locals.user)
 			// }
 
-			console.log("Access token[Middleware.ts]: ", access_token)
+			//log("Access token[Middleware.ts]: ", access_token)
 			client.setToken(access_token);
 			const user = await client.request(readMe());
 			context.locals.user = user;
-			console.log("Relogged in[Middleware.ts]: ", context.locals.user)
+			//log("Relogged in[Middleware.ts]: ", context.locals.user)
 
-		  } catch (error) {
-			console.error("Auth error:", error);
+		  } catch (err) {
+			error("Auth error:", err);
 		  }
 	} else {
-		console.log("No access token[Middleware.ts]: ", access_token)
+		log("No access token[Middleware.ts]: ", access_token)
 	}
 
 	// Cart
 	const cart = JSON.parse(context.cookies.get('cart')?.value || '[]');
-	console.log("Cart[Middleware.ts]: ", cart)
-	console.log("Cart Context[Middleware.ts]: ", context.locals)
+	//log("Cart[Middleware.ts]: ", cart)
+	//log("Cart Context[Middleware.ts]: ", context.locals)
 
 	const order = JSON.parse(context.cookies.get('order')?.value || '{}');
 
-	context.locals.cart = { ...context.locals.cart, summary: order, products: cart };
+	//context.locals.cart = { ...context.locals.cart, summary: order, products: cart };
+	// so that its an array
+	context.locals.cart = { summary: order, products: cart };
 
 	// Scrape order cookies if we are not in the checkout/summary page
 	if (!context.url.pathname.includes("checkout") && !context.url.pathname.includes("checkout") && context.cookies.get('order')?.value) {
 		context.cookies.delete("order");
-		console.log("Scrape order cookies[Middleware.ts]: ", context.cookies.get('order')?.value)
+		log("Scrape order cookies[Middleware.ts]: ", context.cookies.get('order')?.value)
 	}
 
  	return next();

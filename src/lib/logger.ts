@@ -14,11 +14,6 @@ export const log = (m: string, ...params: any[]): void => {
 	console.log("%c" + "📄 " + m, "color: #3b82f6", formatDate(dt), ...params);
 }
 
-export const anim = (m: string, ...params: any[]): void => {
-	const dt = new Date();
-	console.log("%c" + "▶️ " + m, "color: #3b82f6", formatDate(dt), ...params);
-}
-
 /**
  * error handler
  */

@@ -78,18 +78,26 @@ export const toggleDarkMode = (): void => {
 
 export const isDarkModeEnabled: boolean = isBrowser ? localStorage.getItem("theme") === "light" : false;
 
-export const getGroupedProducts = (slugs: string[]) => {
-	// Get counts for each slug
+export const getGroupedProducts = (items) => {
+	// Handle empty/undefined case
+	if (!items) return [];
+	
+	// Convert to array if it's not already
+	const slugs = Array.isArray(items) ? items : Object.values(items);
+	
+	// Group by slug and count occurrences
 	const groupCounts = slugs.reduce((acc, slug) => {
+	  if (typeof slug === 'string') {  // Only process string slugs
 		acc[slug] = (acc[slug] || 0) + 1;
-		return acc;
+	  }
+	  return acc;
 	}, {});
 	
-	// Map to full products with counts
+	// Map to products with counts
 	return products
-		.filter(p => groupCounts[p.slug])
-		.map(p => ({
-			...p,
-			count: groupCounts[p.slug]
-		}));
- }
+	  .filter(p => groupCounts[p.slug])
+	  .map(p => ({
+		...p,
+		count: groupCounts[p.slug]
+	  }));
+  };

@@ -3,39 +3,43 @@ import { Image } from "astro:assets";
 import ArrowIcon from "@icons/ArrowIcon.astro";
 
 const { title, slug, description, price, cover, class: className, ...props } = Astro.props;
+
+const MODULE = "ProductCard";
 ---
 
 <script>
-    import { $ } from "@wmdigi/dom";
-    import { cart } from "@lib/store";
-    import type { Product } from "@src/types/cart";
-    import { products } from "@lib/data";
-    import { actions } from "astro:actions";
+	import { products } from "@lib/data";
+	import { actions } from "astro:actions";
 	import { getGroupedProducts } from "@lib/utils";
+	import { error, log } from "@log";
 
-    $(".card").array.forEach((card: HTMLElement) => {
-        $(card).on("click", async () => {
-            const product = products.find((p: Product) => p.slug === card.dataset.slug);
-            if (!product) return;
+	$(".card").on("click", async function () {
+		const slug = $(this).data("slug");
+		log(MODULE, "Add to cart clicked: ", slug);
+		const product = products.find((p) => p.slug === slug);
 
-            const { data, error } = await actions.cart.addToCart({ product: product?.slug });
+		if (product) {
+			log(MODULE, "Product found: ", product);
+		} else {
+			error("ProductCard", "Product not found: ", slug);
+			return;
+		}
 
-            if (data?.success) {
-                // Get cart data from response (now it's an object with counts)
-                const cartData = data.data.cart;
-				const groupedProducts = getGroupedProducts(data.data.cart.products);
+		const { data } = await actions.cart.addToCart({ product: product.slug });
 
-                // Update store
-                cart.set({ 
-                    ...cart.get(),
-					total: cartData.products.length,
-                    products: groupedProducts 
-                });
+		if (data?.success) {
+			log(MODULE, "Cart updated: ", data.data.cart);
 
-				console.log("Cart Store Updated[ProductCard.astro]: ", cart.get());
-            }
-        });
-    });
+			$.store.cart = {
+				total: data.data.cart.products.length,
+				items: data.data.cart.products,
+			};
+
+			log(MODULE, "Cart Store Updated[ProductCard.astro]: ", $.store.cart);
+		} else {
+			error("ProductCard", "Failed to update cart: ", data?.error);
+		}
+	});
 </script>
 
 <button
@@ -46,9 +50,7 @@ const { title, slug, description, price, cover, class: className, ...props } = A
 	{...props}
 	data-slug={slug}
 >
-	<div
-		class="h-1/2 w-full relative transition-[height] duration-300 ease-easeOutCubic overflow-hidden"
-	>
+	<div class="h-1/2 w-full relative transition-[height] duration-300 ease-easeOutCubic overflow-hidden">
 		<Image
 			src={cover}
 			alt={cover?.title || "cover image for resource"}
@@ -65,13 +67,19 @@ const { title, slug, description, price, cover, class: className, ...props } = A
 	<div
 		class="flex flex-1 flex-col h-auto items-start p-[clamp(1.375rem,1.7vw,2rem)] w-full justify-between transition-default group-hover:bg-white"
 	>
-		<div class="flex flex-col items-start justify-start gap-[clamp(0.25rem,0.5vw,1.5rem)] w-full will-change-transform">
+		<div
+			class="flex flex-col items-start justify-start gap-[clamp(0.25rem,0.5vw,1.5rem)] w-full will-change-transform"
+		>
 			<h6
 				class="group-hover:text-black text-black dark:text-white transition-default line-clamp-4 md:line-clamp-2 text-ellipsis overflow-hidden"
 			>
 				{title}
 			</h6>
-			<p class="group-hover:text-black text-black dark:text-white transition-default text-left line-clamp-2 text-ellipsis overflow-hidden">{description}</p>
+			<p
+				class="group-hover:text-black text-black dark:text-white transition-default text-left line-clamp-2 text-ellipsis overflow-hidden"
+			>
+				{description}
+			</p>
 		</div>
 		<div class="w-full flex flex-row items-end justify-between gap-[clamp(1rem,1vw,1.5rem)]">
 			<div
@@ -81,8 +89,12 @@ const { title, slug, description, price, cover, class: className, ...props } = A
 				]}
 				{...props}
 			>
-				<ArrowIcon class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full h-[clamp(0.625rem,0.775vw,0.875rem)] group-hover:translate-x-0 transition-transform duration-300 ease-easeOutCubic" />
-				<div class="flex flex-row items-center gap-5 text-[clamp(0.875rem,1.05vw,1.25rem)] group-hover:translate-x-[2.125rem] transition-transform duration-300 ease-easeOutCubic will-change-transform">
+				<ArrowIcon
+					class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full h-[clamp(0.625rem,0.775vw,0.875rem)] group-hover:translate-x-0 transition-transform duration-300 ease-easeOutCubic"
+				/>
+				<div
+					class="flex flex-row items-center gap-5 text-[clamp(0.875rem,1.05vw,1.25rem)] group-hover:translate-x-[2.125rem] transition-transform duration-300 ease-easeOutCubic will-change-transform"
+				>
 					Add to cart
 					<ArrowIcon class="h-[clamp(0.625rem,0.775vw,0.875rem)]" />
 				</div>

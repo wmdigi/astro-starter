@@ -6,21 +6,22 @@ import CartList from "@components/CartList.astro";
 ---
 
 <script>
-	import { $ } from "@wmdigi/dom";
 	import { actions } from "astro:actions";
 	import { navigate } from "astro:transitions/client";
 
 	$("#form-checkout").on("submit", async (event: SubmitEvent) => {
 		event.preventDefault();
-       
-	    const formData = new FormData(($("#form-checkout").first as HTMLFormElement));
-	    const { data, error } = await actions.cart.checkout(formData);
 
-	    if (data?.success && !error) {
-	        $("#form-checkout").addClass("success");
-			$.timeout(() => { navigate("/summary") }, 500)
-	    } else {
-			console.log(error)
+		const formData = new FormData($("#form-checkout").first as HTMLFormElement);
+		const { data, error } = await actions.cart.checkout(formData);
+
+		if (data?.success && !error) {
+			$("#form-checkout").addClass("success");
+			$.timeout(() => {
+				navigate("/summary");
+			}, 500);
+		} else {
+			console.log(error);
 		}
 	});
 </script>
@@ -30,11 +31,35 @@ import CartList from "@components/CartList.astro";
 		<div class="container flex flex-col items-start justify-start gap-8 md:gap-16">
 			<h2 data-split-text>Checkout</h2>
 			<div class="w-full h-full grid grid-cols-2 place-items-start gap-8 md:gap-16">
-				<form id="form-checkout" class="group/submit w-full flex flex-col items-stretch justify-between gap-8 motion-preset-focus motion-delay-150">
-					<Input id="checkout-first-name" required type="text" name="first_name" placeholder="First name" theme="light" />
-					<Input id="checkout-last-name" required type="text" name="last_name" placeholder="Last name" theme="light" />
+				<form
+					id="form-checkout"
+					class="group/submit w-full flex flex-col items-stretch justify-between gap-8 motion-preset-focus motion-delay-150"
+				>
+					<Input
+						id="checkout-first-name"
+						required
+						type="text"
+						name="first_name"
+						placeholder="First name"
+						theme="light"
+					/>
+					<Input
+						id="checkout-last-name"
+						required
+						type="text"
+						name="last_name"
+						placeholder="Last name"
+						theme="light"
+					/>
 					<Input id="checkout-email" required type="email" name="email" placeholder="Email" theme="light" />
-					<Input id="checkout-address" required type="text" name="address" placeholder="Address" theme="light" />
+					<Input
+						id="checkout-address"
+						required
+						type="text"
+						name="address"
+						placeholder="Address"
+						theme="light"
+					/>
 					<Input id="checkout-city" required type="text" name="city" placeholder="City" theme="light" />
 					<Input id="checkout-zip" required type="text" name="zip" placeholder="ZIP" theme="light" />
 					<!-- <Input id="checkout-password" required type="password" name="password" placeholder="Password" theme="light" /> -->
