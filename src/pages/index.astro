@@ -1,9 +1,12 @@
 ---
 import Layout from "@src/layouts/Layout.astro";
+
+const title = "Testing title";
 ---
 
-<script>
+<script define:vars={{ title }} type="module">
 	import { $ } from "@wmdigi/dom";
+	$("#article-content").html(title);
 </script>
 
 <Layout title="Homepage">
