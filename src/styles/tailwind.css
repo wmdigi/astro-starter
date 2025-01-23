@@ -1,6 +1,22 @@
 @import "tailwindcss";
 
+/*
+xs: "375px",
+				sm: "440px", // iPhone 15 Plus = 430x932
+				md: "768px", // iPad mini = 768x1024
+				lg: "1024px", // iPad Pro = 1024x1366
+				xl: "1366px",
+				"2xl": "1440px",
+				"3xl": "1920px",
+				"4xl": "2560px",
+				*/
+
 @theme {
+	/* Breakpoints */
+	--breakpoint-xs: 375px;
+	--breakpoint-sm: 440px;
+	--breakpoint-md: 768px;
+
 	/* Easing functions */
 	--ease-in-cubic: cubic-bezier(0.5, 0, 0.6, 0.2);
 	--ease-out-cubic: cubic-bezier(0.2, 0.6, 0.35, 1);

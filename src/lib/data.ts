@@ -3,8 +3,8 @@ import type { Product } from "@src/types/cart";
 
 export const navLinks: Array<{ name: string; url: string }> = [
 	{ name: "Home", url: "/" },
-	{ name: "Articles", url: "/articles" },
-	{ name: "Products", url: "/products" },
+	{ name: "Articles", url: "/legal/cookies" },
+	{ name: "Products", url: "/legal/terms-and-conditions" },
 ];
 
 export const products: Product[] = [

@@ -76,7 +76,7 @@ p {
 }
 
 .container {
-	@apply mx-auto w-full h-full max-w-lg px-4 sm:px-8;
+	@apply mx-auto w-full h-full px-4 sm:px-8;
 }
 
 .button {
@@ -127,9 +127,11 @@ input:-internal-autofill-selected {
 }
 
 /* Enable zero-JavaScript view transitions */
+/*
 @view-transition {
 	navigation: auto;
 }
+	*/
 
 /* Customize the default transition */
 ::view-transition-old(root),

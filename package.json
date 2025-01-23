@@ -29,7 +29,7 @@
     "@astrojs/partytown": "2.1.2",
     "@astrojs/sitemap": "3.2.1",
     "@directus/sdk": "^18.0.0",
-    "@tailwindcss/postcss": "^4.0.0",
+    "@swup/astro": "^1.5.0",
     "@tailwindcss/vite": "^4.0.0",
     "@wmdigi/dom": "^2.1.21",
     "gsap": "./gsap-bonus.tgz",
