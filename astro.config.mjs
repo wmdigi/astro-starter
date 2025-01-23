@@ -23,4 +23,8 @@ export default defineConfig({
 	],
 	output: "static",
 	adapter: vercel(),
+	experimental: {
+		// import SVG files as components
+		svg: true
+	}
 });

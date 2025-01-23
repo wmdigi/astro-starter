@@ -14,9 +14,9 @@
 			"@videos/*": ["src/assets/videos/*"],
 			"@lib/*": ["src/lib/*"],
 
-			"@icons": ["src/components/icons"],
-			"@icons/*": ["src/components/icons/*"],
-			
+			"@icons": ["src/assets/icons"],
+			"@icons/*": ["src/assets/icons/*"],
+
 			"@utils": ["src/lib/utils"],
 			"@data": ["src/lib/data"],
 			"@log": ["src/lib/logger"],
@@ -24,7 +24,7 @@
 			"@store": ["src/lib/store"],
 			"@src/*": ["src/*"],
 			"@types/*": ["src/types/*"],
-			"@actions/*": ["src/actions/*"],
+			"@actions/*": ["src/actions/*"]
 		},
 		"jsx": "react-jsx",
 		"jsxImportSource": "react",
