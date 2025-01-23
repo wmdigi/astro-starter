@@ -1,17 +1,24 @@
 ---
 import { navLinks } from "@data";
 import { Logo, ThemeToggle, Link, Button } from "@components";
-import { getCurrentUrlPath } from "@utils";
 import UserAuth from "@components/UserAuth.astro";
+import { getCurrentUrlPath } from "@lib/utils";
 import CartIcon from "@icons/cart.svg";
 import Cart from "@components/Cart.astro";
 
-const currentPath = new URL(Astro.request.url).pathname;
+const currentPath = getCurrentUrlPath();
 ---
 
 <script>
-	$("#testing").on("click", () => {
-		alert("Hello");
+	import { getCurrentUrl, Location } from "swup";
+
+	swup.hooks.on("content:replace", () => {
+		$("nav a").each((link) => {
+			const { url } = Location.fromUrl(link.href);
+			const current = getCurrentUrl();
+
+			$(link)[current === url ? "addClass" : "removeClass"]("underline");
+		});
 	});
 </script>
 

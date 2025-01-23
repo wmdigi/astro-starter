@@ -1,7 +1,6 @@
 import { defineConfig } from "astro/config";
 import dom from "@wmdigi/dom/astro";
-import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel";
+import swup from '@swup/astro';
 
 //import partytown from "@astrojs/partytown";
 
@@ -11,6 +10,12 @@ export default defineConfig({
 	site,
 	base: "/",
 	integrations: [
+		swup({
+			theme: `slide`,
+			progress: true,
+			globalInstance: true,
+			loadOnIdle: false
+		}),
 		dom(),
 		sitemap(),
 		// partytown(
