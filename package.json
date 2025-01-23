@@ -16,20 +16,21 @@
     "@astrojs/vercel": "8.0.0-beta.4",
     "@fontsource/inter": "^5.1.0",
     "@tailwindcss/forms": "^0.5.9",
+    "@types/node": "^22.10.7",
     "@vercel/speed-insights": "^1.1.0",
-    "astro": "^5.0.0-beta.10",
+    "astro": "^5.1.7",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwindcss": "^3.4.15",
     "tailwindcss-motion": "^0.4.1-beta",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "@astrojs/partytown": "2.1.2",
     "@astrojs/sitemap": "3.2.1",
     "@directus/sdk": "^18.0.0",
-    "@wmdigi/dom": "^2.1.12",
+    "@wmdigi/dom": "^2.1.21",
     "gsap": "./gsap-bonus.tgz",
     "nanostores": "^0.11.3"
   }

@@ -7,7 +7,6 @@ const result = Astro.getActionResult(actions.user.getUser);
 ---
 
 <script>
-	import { $ } from "@wmdigi/dom";
 	import { actions } from "astro:actions";
 
 	$("#form-login").on("submit", async (event: SubmitEvent) => {
@@ -17,8 +16,8 @@ const result = Astro.getActionResult(actions.user.getUser);
 
 		if (data) {
 			console.log("User logged in", data);
-			$(document.documentElement).addClass("logged-in")
-			$("#user-auth").addClass("logged-in")
+			$(document.documentElement).addClass("logged-in");
+			$("#user-auth").addClass("logged-in");
 			let tl = setTimeout(() => {
 				$(`#login-modal`).removeClass("opened");
 				clearTimeout(tl);
@@ -27,15 +26,39 @@ const result = Astro.getActionResult(actions.user.getUser);
 	});
 </script>
 
-<div class="w-full max-w-[30rem] min-h-[18rem] bg-black flex flex-col items-center justify-start gap-8 p-4 md:p-8 rounded-[4rem]">
+<div
+	class="w-full max-w-[30rem] min-h-[18rem] bg-black flex flex-col items-center justify-start gap-8 p-4 md:p-8 rounded-[4rem]"
+>
 	<h5 class="text-white uppercase">Sign in</h5>
 	<form id="form-login" class="group/submit w-full flex-1 flex flex-col items-stretch justify-between gap-2">
-		<Input id="login-email" required type="email" name="email" placeholder="Email" error={result?.error} theme="dark" />
-		<Input id="login-password" required type="password" name="password" placeholder="Password" error={result?.error} theme="dark" />
+		<Input
+			id="login-email"
+			required
+			type="email"
+			name="email"
+			placeholder="Email"
+			error={result?.error}
+			theme="dark"
+		/>
+		<Input
+			id="login-password"
+			required
+			type="password"
+			name="password"
+			placeholder="Password"
+			error={result?.error}
+			theme="dark"
+		/>
 		<Button type="submit" class="invert dark:invert-0 w-full logged-in:pointer-events-none">
-			<div class="flex flex-col items-center justify-end translate-y-3 logged-in:-translate-y-2.5 transition-transform duration-300 ease-easeOutCubic">
-				<span class="opacity-100 logged-in:opacity-0 transition-opacity duration-300 ease-easeOutCubic">Do it</span>
-				<span class="opacity-0 logged-in:opacity-100 transition-opacity duration-300 ease-easeOutCubic">Success</span>
+			<div
+				class="flex flex-col items-center justify-end translate-y-3 logged-in:-translate-y-2.5 transition-transform duration-300 ease-easeOutCubic"
+			>
+				<span class="opacity-100 logged-in:opacity-0 transition-opacity duration-300 ease-easeOutCubic"
+					>Do it</span
+				>
+				<span class="opacity-0 logged-in:opacity-100 transition-opacity duration-300 ease-easeOutCubic"
+					>Success</span
+				>
 			</div>
 		</Button>
 	</form>
