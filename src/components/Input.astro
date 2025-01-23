@@ -14,7 +14,7 @@ const {
 	...props
 } = Astro.props;
 
-const lightClasses = "!border-black/50 hover:!border-black placeholder:!text-black/80 !text-black";
+const lightClasses = "border-black/50! hover:border-black! placeholder:text-black/80! text-black!";
 const darkClasses = "dark:border-white/30 dark:hover:border-white/60 dark:placeholder:text-white/30 dark:text-white";
 ---
 
@@ -29,7 +29,7 @@ const darkClasses = "dark:border-white/30 dark:hover:border-white/60 dark:placeh
 		{minlength}
 		{value}
 		class:list={[
-			'bg-transparent text-white placeholder:text-white/70 border empty:border-white p-4 focus:border-lime-400 dark:focus:border-lime-400 w-full focus:ring-0 disabled:pointer-events-none disabled:opacity-30 rounded-full invalid:border-red-500 invalid:focus-visible:border-red-500 focus-visible:outline-none transition-colors duration-200 ease-in-out', 
+			'bg-transparent text-white placeholder:text-white/70 border empty:border-white p-4 focus:border-lime-400 dark:focus:border-lime-400 w-full focus:ring-0 disabled:pointer-events-none disabled:opacity-30 rounded-full invalid:border-red-500 invalid:focus-visible:border-red-500 focus-visible:outline-hidden transition-colors duration-200 ease-in-out', 
 			theme ? (theme === "light" ? lightClasses : darkClasses) : lightClasses + " " + darkClasses,
 			className
 		]}

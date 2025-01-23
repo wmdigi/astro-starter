@@ -14,11 +14,13 @@ const lightClasses = "border-white/30 hover:border-white/60 focus:ring-lime-400 
 		name={name}
 		type="checkbox"
 		class:list={[
-			'peer size-5 bg-transparent appearance-none text-[#FFFF00] focus:ring-lime-400/0 focus:ring-offset-0 rounded-full', 
-			theme ? (theme === "dark" ? darkClasses : lightClasses) : darkClasses + " " + lightClasses
+			"peer size-5 bg-transparent appearance-none text-[#FFFF00] focus:ring-lime-400/0 focus:ring-offset-0 rounded-full",
+			theme ? (theme === "dark" ? darkClasses : lightClasses) : darkClasses + " " + lightClasses,
 		]}
 		{...props}
 	/>
-	<CheckIcon class="pointer-events-none absolute top-1/2 -translate-y-1/2 left-1 w-3 text-black peer-checked:visible peer-checked:opacity-100 invisible opacity-0 transition-all duration-150 ease-easeOutCubic" />
+	<CheckIcon
+		class="pointer-events-none absolute top-1/2 -translate-y-1/2 left-1 w-3 text-black peer-checked:visible peer-checked:opacity-100 invisible opacity-0 transition-all duration-150 ease-out-cubic"
+	/>
 	<label for={id}><slot /></label>
 </div>

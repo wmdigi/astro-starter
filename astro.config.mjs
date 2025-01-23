@@ -1,8 +1,7 @@
-import { defineConfig } from 'astro/config';
-import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel";
-import sitemap from "@astrojs/sitemap";
+import { defineConfig } from "astro/config";
 import dom from "@wmdigi/dom/astro";
+import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
 
 //import partytown from "@astrojs/partytown";
 
@@ -13,7 +12,6 @@ export default defineConfig({
 	base: "/",
 	integrations: [
 		dom(),
-		tailwind(),
 		sitemap(),
 		// partytown(
 		// 	{
@@ -25,6 +23,6 @@ export default defineConfig({
 	adapter: vercel(),
 	experimental: {
 		// import SVG files as components
-		svg: true
-	}
+		svg: true,
+	},
 });

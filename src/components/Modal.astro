@@ -20,7 +20,7 @@ const { id } = Astro.props;
 
 <div
 	id={id + "-modal"}
-	class="modal fixed z-[101] top-0 left-0 h-lvh w-full bg-black/20 flex items-center justify-center backdrop-blur-sm p-8 invisible opacity-0 [.opened&]:visible [.opened&]:opacity-100 transition-all duration-300 ease-easeOutCubic"
+	class="modal fixed z-101 top-0 left-0 h-lvh w-full bg-black/20 flex items-center justify-center backdrop-blur-xs p-8 invisible opacity-0 [.opened&]:visible [.opened&]:opacity-100 transition-all duration-300 ease-out-cubic"
 >
 	<slot name="modal" />
 </div>
