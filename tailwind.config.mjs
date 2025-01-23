@@ -44,12 +44,12 @@ export default {
 	},
 	plugins: [
 		plugin(function ({ addVariant }) {
-			addVariant("initial", ["&.initial", ".initial &"]),
-				addVariant("onload", ["&.onload", ".onload &"]),
-				addVariant("mounted", ["&.mounted", ".mounted &"]),
-				addVariant("is-safari", ["&.is-safari", ".is-safari &"]),
-				addVariant("logged-in", ["&.logged-in", ".logged-in &"]),
-				addVariant("server-loaded", ["&.server-loaded", ".server-loaded &"]);
+			addVariant("initial", ["&.initial", ".initial &"]);
+			addVariant("onload", ["&.onload", ".onload &"]);
+			addVariant("mounted", ["&.mounted", ".mounted &"]);
+			addVariant("is-safari", ["&.is-safari", ".is-safari &"]);
+			addVariant("logged-in", ["&.logged-in", ".logged-in &"]);
+			addVariant("server-loaded", ["&.server-loaded", ".server-loaded &"]);
 		}),
 		require("@tailwindcss/forms"),
 		require("tailwindcss-motion"),
