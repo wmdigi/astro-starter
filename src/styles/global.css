@@ -111,6 +111,11 @@ hr {
 }
 */
 
+.swup-progress-bar {
+	height: 2px;
+	background-color: var(--color-sky-200);
+}
+
 .scroll-disabled {
 	overflow: hidden;
 	touch-action: none;
