@@ -36,16 +36,6 @@
 /* Dark mode with class */
 @variant dark (&:where(.dark, .dark *));
 
-@layer base {
-	*,
-	::after,
-	::before,
-	::backdrop,
-	::file-selector-button {
-		border-color: var(--color-gray-200, currentColor);
-	}
-}
-
 @utility transition-default {
 	@apply transition-colors duration-300 ease-out-cubic;
 }

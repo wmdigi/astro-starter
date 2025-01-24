@@ -19,7 +19,6 @@ const currentPath = Astro.url.pathname;
 		$("nav a").each((link) => {
 			const { url } = Location.fromUrl(link.href);
 			const current = getCurrentUrl();
-
 			$(link)[current === url ? "addClass" : "removeClass"]("underline");
 		});
 	});

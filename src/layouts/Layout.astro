@@ -9,8 +9,6 @@ import "@styles/typography.css";
 import "@styles/tailwind.css";
 import "@styles/global.css";
 
-import { ClientRouter } from "astro:transitions";
-
 const {
 	page_name = "Astro Starter",
 	title = "Home",
@@ -78,8 +76,6 @@ const {
 				f.parentNode?.insertBefore(j, f);
 			})(window, document, "script", "dataLayer", "GTM-XXXXXX");
 		</script>
-
-		<ClientRouter />
 
 		<script is:inline src="/init.js" data-swup-ignore-script></script>
 		<script data-swup-ignore-script>
