@@ -24,11 +24,6 @@ export default defineConfig({
 		}),
 		dom(),
 		sitemap(),
-		// partytown(
-		// 	{
-		// 		config: { debug: false },
-		// 	}
-		// ),
 	],
 	output: "static",
 	adapter: vercel(),

@@ -1,8 +1,5 @@
 ---
 import Navigation from "@components/Navigation.astro";
-import Modal from "@components/Modal.astro";
-import Login from "@components/Login.astro";
-import Register from "@components/Register.astro";
 import Footer from "@components/Footer.astro";
 
 import "@styles/typography.css";
@@ -13,7 +10,7 @@ const {
 	page_name = "Astro Starter",
 	title = "Home",
 	description = "Description",
-	shareImage = `shareimage.jpg`,
+	shareImage = `/shareimage.jpg`,
 	themeColor = "#fff",
 	themeColorDark = "#000",
 	lang = "en",
@@ -47,14 +44,14 @@ const {
 		<meta name="theme-color" media="(prefers-color-scheme: dark)" content={themeColorDark} />
 
 		<link
-			href={`favicon-light.svg`}
+			href={`/favicon-light.svg`}
 			media="(prefers-color-scheme: light)"
 			rel="shortcut icon"
 			type="image/x-icon"
 		/>
-		<link href={`favicon-dark.svg`} media="(prefers-color-scheme: dark)" rel="shortcut icon" type="image/x-icon" />
+		<link href={`/favicon-dark.svg`} media="(prefers-color-scheme: dark)" rel="shortcut icon" type="image/x-icon" />
 
-		<link href={`touchicon.png`} rel="apple-touch-icon" />
+		<link href={`/touchicon.png`} rel="apple-touch-icon" />
 
 		<link rel="sitemap" href={`sitemap-index.xml`} />
 		<link rel="preload" href="/fonts/codec-pro-news.woff" as="font" type="font/woff" crossorigin />
@@ -85,12 +82,6 @@ const {
 
 	<body>
 		<Navigation />
-		<Modal id="login">
-			<Login slot="modal" />
-		</Modal>
-		<Modal id="register">
-			<Register slot="modal" />
-		</Modal>
 		<main class="flex flex-col overflow-x-clip">
 			<slot />
 		</main>

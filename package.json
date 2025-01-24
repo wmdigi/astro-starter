@@ -16,7 +16,6 @@
     "@fontsource/inter": "^5.1.0",
     "@tailwindcss/forms": "^0.5.9",
     "@types/node": "^22.10.7",
-    "@vercel/speed-insights": "^1.1.0",
     "astro": "^5.1.7",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
@@ -26,9 +25,7 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@astrojs/partytown": "2.1.2",
     "@astrojs/sitemap": "3.2.1",
-    "@directus/sdk": "^18.0.0",
     "@swup/astro": "^1.5.0",
     "@tailwindcss/vite": "^4.0.0",
     "@wmdigi/dom": "^2.1.21",
