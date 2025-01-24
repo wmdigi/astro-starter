@@ -17,7 +17,7 @@ export default defineConfig({
 	},
 	integrations: [
 		swup({
-			theme: `slide`,
+			theme: `fade`,
 			progress: true,
 			globalInstance: true,
 			loadOnIdle: false

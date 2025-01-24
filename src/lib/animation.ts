@@ -1,10 +1,9 @@
 import { gsap, SplitText } from "@lib/gsap"
 
 /* SplitText animation hook */
-const useInView = () => {
+export const useInView = () => {
 
 	const textElements = document.querySelectorAll(`[data-split-text]`);
-	const cardElements = document.querySelectorAll(`[data-split-cards]`);
 
 	const inViewTl = gsap.timeline({ delay: 0.15 });
 
@@ -36,19 +35,4 @@ const useInView = () => {
 			"<10%",
 		);
 	});
-
-	cardElements?.forEach((element: any) => {
-		inViewTl.to(
-			element,
-			{
-				y: 0,
-				duration: 0.75,
-				stagger: 0.05,
-				ease: "power4.out",
-			},
-			"<5%",
-		);
-	});
 };
-
-useInView()

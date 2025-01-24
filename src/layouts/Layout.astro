@@ -3,8 +3,8 @@ import Navigation from "@components/Navigation.astro";
 import Footer from "@components/Footer.astro";
 
 import "@styles/typography.css";
-import "@styles/tailwind.css";
 import "@styles/global.css";
+import "@styles/tailwind.css";
 
 const {
 	page_name = "Astro Starter",
@@ -75,7 +75,8 @@ const {
 		</script>
 
 		<script is:inline src="/init.js" data-swup-ignore-script></script>
-		<script data-swup-ignore-script>
+		
+		<script>
 			import "@lib/animation";
 		</script>
 	</head>

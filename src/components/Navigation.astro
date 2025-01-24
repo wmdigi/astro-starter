@@ -12,7 +12,7 @@ const currentPath = Astro.url.pathname;
 
 <script>
 	import { getCurrentUrl, Location } from "swup";
-
+	
 	swup.hooks.on("content:replace", () => {
 		$("nav a").each((link: HTMLAnchorElement) => {
 			const { url } = Location.fromUrl(link.href);
