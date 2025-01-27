@@ -1,24 +1,43 @@
 ---
 import FilterButton from "@components/FilterButton.astro";
+import ResourceCard from "@components/ResourceCard.astro";
+import { products } from "@lib/data";
 import Layout from "@src/layouts/Layout.astro";
 
-import reel from "@videos/reel.mp4";
-
-const categories = ["Web Development", "Mobile Development", "Design"];
+const categories = Array.from(
+	new Set(products.map((product) => product.categories.map((category: any) => category)).flat())
+);
 ---
+
+<script>
+	document.body.addEventListener("htmx:beforeSwap", (event: CustomEvent) => {
+		$("main").addClass("disable-view-transition");
+		$("#resource-wrapper").removeClass("disable-view-transition");
+		console.log("Transition disabled");
+	});
+
+	document.body.addEventListener("htmx:afterSwap", (event: CustomEvent) => {
+		$.timeout(() => {
+			$("main").removeClass("disable-view-transition");
+			$("#resource-wrapper").addClass("disable-view-transition");
+			console.log("Transition enabled");
+		}, 1000);
+	});
+</script>
 
 <Layout title="About">
 	<section
 		id="hero"
-		class="pt-[calc(var(--navbar-height)+2rem)] pb-0 w-full h-svh flex flex-col items-start justify-start gap-8 pl-8 bg-white dark:bg-dark transition-mode"
+		class="pt-[calc(var(--navbar-height)+2rem)] pb-0 w-full h-svh flex flex-col items-start justify-start gap-8 px-8 bg-white dark:bg-dark transition-mode"
 	>
 		<h1 data-split-text>Products</h1>
 		<form
 			id="form"
-			class="w-full flex flex-col items-center justify-start gap-default"
-			hx-get={`/partials/resources/results`}
-			hx-trigger="change from:.filter-checkbox, click from:#load-more-button"
+			class="w-full flex flex-col items-center justify-start gap-4"
+			hx-get={`/partials/products/results`}
+			hx-trigger="change from:.filter-checkbox"
 			hx-boost="true"
+			hx-swap="innerHTML transition:true"
 			hx-target="#resource-wrapper"
 		>
 			<div class="w-full flex flex-row items-start justify-start gap-1">
@@ -29,10 +48,10 @@ const categories = ["Web Development", "Mobile Development", "Design"];
 				data-cards-reveal
 				hx-disable
 				class:list={[
-					"w-full grid grid-cols-1 gap-[clamp(0.5rem,1vw,0.75rem)] overflow-clip sm+:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+					"disable-view-transition w-full grid grid-cols-1 gap-[clamp(0.5rem,1vw,0.75rem)] sm+:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
 				]}
 			>
-				<slot />
+				{products.map(({ title, slug, cover }) => <ResourceCard {title} {slug} {cover} />)}
 			</div>
 		</form>
 	</section>

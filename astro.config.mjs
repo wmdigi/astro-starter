@@ -4,6 +4,7 @@ import dom from "@wmdigi/dom/astro";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
+import htmx from "astro-htmx";
 
 //import partytown from "@astrojs/partytown";
 
@@ -22,10 +23,10 @@ export default defineConfig({
 		// 	globalInstance: true,
 		// 	loadOnIdle: false,
 		// }),
+		htmx(),
 		dom(),
 		sitemap(),
 	],
-	output: "static",
 	adapter: vercel(),
 	experimental: {
 		// import SVG files as components

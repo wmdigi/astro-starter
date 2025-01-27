@@ -58,7 +58,7 @@ const {
 
 		<title>{page_name} — {title}</title>
 
-		<ClientRouter />
+		<!-- <ClientRouter /> -->
 
 		<!-- Google Tag Manager -->
 		<!-- <script>
@@ -78,8 +78,8 @@ const {
 			import { init } from "public/init.js";
 			import { splitAnimation } from "@lib/animation";
 
-			document.addEventListener("astro:page-load", init);
-			document.addEventListener("astro:page-load", splitAnimation);
+			document.addEventListener("DOMConentLoaded", init);
+			document.addEventListener("DOMConentLoaded", splitAnimation);
 		</script>
 
 		<script is:inline>

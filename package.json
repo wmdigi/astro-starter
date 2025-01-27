@@ -32,7 +32,9 @@
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.0.0",
     "@wmdigi/dom": "^2.1.21",
+    "astro-htmx": "^1.0.6",
     "gsap": "./gsap-bonus.tgz",
+    "htmx.org": "^1.9.12",
     "nanostores": "^0.11.3"
   }
 }

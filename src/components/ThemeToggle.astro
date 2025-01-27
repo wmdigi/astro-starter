@@ -3,7 +3,7 @@ const { class: className = "" } = Astro.props;
 ---
 
 <script>
-	document.addEventListener("astro:page-load", () => {
+	document.addEventListener("DOMConentLoaded", () => {
 		$("#theme-toggle-button").on("click", () => {
 			$(document.documentElement).toggleClass("dark");
 
