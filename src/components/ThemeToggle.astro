@@ -3,14 +3,12 @@ const { class: className = "" } = Astro.props;
 ---
 
 <script>
-	document.addEventListener("DOMConentLoaded", () => {
-		$("#theme-toggle-button").on("click", () => {
-			$(document.documentElement).toggleClass("dark");
+	$("#theme-toggle-button").on("click", () => {
+		$(document.documentElement).toggleClass("dark");
 
-			$(document.documentElement).hasClass("dark")
-				? localStorage.setItem("theme", "dark")
-				: localStorage.setItem("theme", "light");
-		});
+		$(document.documentElement).hasClass("dark")
+			? localStorage.setItem("theme", "dark")
+			: localStorage.setItem("theme", "light");
 	});
 </script>
 

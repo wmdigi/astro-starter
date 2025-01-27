@@ -16,6 +16,9 @@ export default defineConfig({
 	vite: {
 		plugins: [tailwindcss()],
 	},
+	devToolbar: {
+		enabled: false,
+	},
 	integrations: [
 		// swup({
 		// 	theme: false, // fade, slide, overlay

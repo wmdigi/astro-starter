@@ -9,7 +9,7 @@ const { title, slug, url, cover, class: className, ...props } = Astro.props;
 	href={url ? url : "/products"}
 	target={url ? "_blank" : "_self"}
 	class:list={[
-		"card group w-full cursor-pointer select-none aspect-[33.5/39] sm:aspect-43/50 flex flex-col items-start justify-between dark:bg-black/10 dark:backdrop-blur-sm red:bg-black/10 red:backdrop-blur border rounded-sm overflow-hidden border-black/20 dark:border-white/20 red:border-white/20",
+		"card group w-full cursor-pointer select-none aspect-[33.5/39] sm:aspect-43/50 flex flex-col items-start justify-between bg-transparent dark:bg-black/10 dark:backdrop-blur-sm border rounded-sm overflow-hidden border-black/20 dark:border-white/20",
 		className,
 	]}
 	{...props}

@@ -9,9 +9,7 @@ import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText, ScrollSmoother); // (CustomEase, Flip, ...) -> DELETE WHICH NOW USED TO AVOID UNNECESSARY JS TO BE LOADED
 
-gsap.config({
-
-});
+gsap.config({});
 
 let mm = gsap.matchMedia();
 
@@ -33,7 +31,6 @@ mm.add(breakpoints, (context) => {
 	// Smooth scroll via Lenis
 	if (isDesktop) {
 		smoother = ScrollSmoother.create({
-			content: document.querySelector("main"),
 			smooth: 1,
 			effects: true,
 			normalizeScroll: true,
@@ -44,7 +41,12 @@ mm.add(breakpoints, (context) => {
 	}
 });
 
-const scrollTo = (anchor: number | HTMLElement, offset: number, ease: string = "power2.inOut", duration: number = 1) => {
+const scrollTo = (
+	anchor: number | HTMLElement,
+	offset: number,
+	ease: string = "power2.inOut",
+	duration: number = 1,
+) => {
 	gsap.to(window, {
 		duration: duration,
 		ease: ease,
@@ -57,12 +59,4 @@ let tl = setTimeout(() => {
 	clearTimeout(tl);
 }, 1500);
 
-export {
-	gsap,
-	ScrollTrigger,
-	ScrollToPlugin,
-	SplitText,
-	mm,
-	breakpoints,
-	scrollTo,
-};
+export { gsap, ScrollTrigger, ScrollToPlugin, SplitText, mm, breakpoints, scrollTo };

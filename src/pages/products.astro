@@ -11,29 +11,31 @@ const categories = Array.from(
 
 <script>
 	document.body.addEventListener("htmx:beforeSwap", (event: CustomEvent) => {
-		$("main").addClass("disable-view-transition");
+		$(document.documentElement).addClass("disable-view-transition");
+		$(document.documentElement).style.viewTransitionName = "disabled";
 		$("#resource-wrapper").removeClass("disable-view-transition");
-		console.log("Transition disabled");
+		console.log("Page Transition disabled");
 	});
 
 	document.body.addEventListener("htmx:afterSwap", (event: CustomEvent) => {
 		$.timeout(() => {
-			$("main").removeClass("disable-view-transition");
+			$(document.documentElement).removeClass("disable-view-transition");
+			$(document.documentElement).style.viewTransitionName = "";
 			$("#resource-wrapper").addClass("disable-view-transition");
-			console.log("Transition enabled");
-		}, 1000);
+			console.log("Page Transition enabled");
+		}, 1500);
 	});
 </script>
 
 <Layout title="About">
 	<section
 		id="hero"
-		class="pt-[calc(var(--navbar-height)+2rem)] pb-0 w-full h-svh flex flex-col items-start justify-start gap-8 px-8 bg-white dark:bg-dark transition-mode"
+		class="pt-[calc(var(--navbar-height)+2rem)] min-h-svh pb-16 w-full flex flex-col items-start justify-start gap-8 px-8 bg-white dark:bg-dark transition-mode"
 	>
 		<h1 data-split-text>Products</h1>
 		<form
 			id="form"
-			class="w-full flex flex-col items-center justify-start gap-4"
+			class="w-full flex flex-col items-center justify-start gap-4 transition-all duration-1000 delay-750 ease-in-out-cubic translate-y-[100px] mounted:translate-y-0 opacity-0 mounted:opacity-100"
 			hx-get={`/partials/products/results`}
 			hx-trigger="change from:.filter-checkbox"
 			hx-boost="true"

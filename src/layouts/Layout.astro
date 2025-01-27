@@ -1,7 +1,6 @@
 ---
 import Navigation from "@components/Navigation.astro";
 import Footer from "@components/Footer.astro";
-import { ClientRouter } from "astro:transitions";
 
 import "@styles/typography.css";
 import "@styles/global.css";
@@ -20,7 +19,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang={lang} class:list={["bg-dark dark:bg-white text-black dark:text-white mounted:transition-mode onload"]}>
+<html lang={lang} class:list={["bg-white dark:bg-dark text-black dark:text-white mounted:transition-mode onload"]}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -74,29 +73,18 @@ const {
 			})(window, document, "script", "dataLayer", "GTM-XXXXXX");
 		</script> -->
 
+		<script is:inline src="/init.js"></script>
+
 		<script>
-			import { init } from "public/init.js";
 			import { splitAnimation } from "@lib/animation";
 
-			document.addEventListener("DOMConentLoaded", init);
-			document.addEventListener("DOMConentLoaded", splitAnimation);
-		</script>
-
-		<script is:inline>
-			function applyTheme() {
-				localStorage.theme === "dark"
-					? document.documentElement.classList.add("dark")
-					: document.documentElement.classList.remove("dark");
-			}
-
-			document.addEventListener("astro:after-swap", applyTheme);
-			applyTheme();
+			splitAnimation();
 		</script>
 	</head>
 
 	<body>
 		<Navigation />
-		<main class="smooth-content flex flex-col overflow-x-clip">
+		<main id="smooth-content" class="flex flex-col overflow-x-clip">
 			<slot />
 			<Footer />
 		</main>

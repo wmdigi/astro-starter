@@ -11,17 +11,15 @@ const currentPath = Astro.url.pathname;
 ---
 
 <script>
-	document.addEventListener("DOMConentLoaded", () => {
-		$("nav a").each((link: HTMLAnchorElement) => {
-			const current = window.location.href;
-			$(link)[current === link.href ? "addClass" : "removeClass"]("underline");
-		});
+	$("nav a").each((link: HTMLAnchorElement) => {
+		const current = window.location.href;
+		$(link)[current === link.href ? "addClass" : "removeClass"]("underline");
 	});
 </script>
 
 <nav
 	id="navigation"
-	class="navigation flex flex-col justify-between fixed top-0 left-0 w-full h-(--navbar-height) z-100 border-b border-black/50 dark:border-white/50 transition-mode"
+	class="navigation flex flex-col justify-between fixed top-0 left-0 w-full h-(--navbar-height) z-100 border-b border-black/0 dark:border-white/50 transition-mode"
 >
 	<div class="container h-full flex items-center justify-between relative">
 		<a href="/" class="group/logo block max-h-(--navigation-height-closed) z-10">
@@ -37,7 +35,7 @@ const currentPath = Astro.url.pathname;
 						<a
 							href={url}
 							class:list={[
-								"hover:underline uppercase block lg:slide-in-initial translate-y-4 opacity-0 lg:translate-y-0 lg:opacity-100 transition-all duration-300 ease-in-out-cubic",
+								"hover:underline uppercase block lg:slide-in-initial translate-y-4 opacity-0 lg:translate-y-0 lg:opacity-100 transition-all duration-300 ease-in-out-cubic !delay-0",
 								{ underline: getCurrentUrlPath(currentPath) === url },
 							]}
 						>
@@ -49,7 +47,7 @@ const currentPath = Astro.url.pathname;
 			<li class="lg:hidden">
 				<Link
 					href="/"
-					class="[--delay:700ms] small translate-y-4 opacity-0 transition-all duration-500 ease-easeOutCubic delay-(--delay)"
+					class="[--delay:700ms] small translate-y-4 opacity-0 transition-all duration-500 ease-easeOutCubic onload:delay-(--delay)"
 				>
 					Contact us
 				</Link>
