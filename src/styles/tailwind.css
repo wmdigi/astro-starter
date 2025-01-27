@@ -38,7 +38,7 @@
 @variant dark (&:where(.dark, .dark *));
 
 @utility transition-mode {
-	@apply transition-colors duration-300 ease-in-out-cubic;
+	@apply transition-colors duration-300 onload:duration-0 ease-in-out-cubic;
 }
 
 @utility slide-in-initial {

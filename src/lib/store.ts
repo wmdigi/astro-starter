@@ -1,3 +1,3 @@
 import { atom } from "nanostores";
 
-export const mode = atom();
+export const mode = atom<string>("light");

@@ -5,6 +5,7 @@ import { ClientRouter } from "astro:transitions";
 
 import "@styles/typography.css";
 import "@styles/global.css";
+import "@styles/animations.css";
 import "@styles/view-transitions.css";
 import "@styles/tailwind.css";
 
@@ -74,10 +75,22 @@ const {
 		</script> -->
 
 		<script>
-			import { init } from "@lib/init";
+			import { init } from "public/init.js";
+			import { splitAnimation } from "@lib/animation";
 
-			init();
-			// DO WE WANT TO KEEP IT REPEATING? -> swup.hooks.on("content:replace", init);
+			document.addEventListener("astro:page-load", init);
+			document.addEventListener("astro:page-load", splitAnimation);
+		</script>
+
+		<script is:inline>
+			function applyTheme() {
+				localStorage.theme === "dark"
+					? document.documentElement.classList.add("dark")
+					: document.documentElement.classList.remove("dark");
+			}
+
+			document.addEventListener("astro:after-swap", applyTheme);
+			applyTheme();
 		</script>
 	</head>
 

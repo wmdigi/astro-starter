@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@layer components {
+	.hero-video {
+		clip-path: inset(0 100% 0 0 round 1rem);
+		animation: revealLeft 1000ms 750ms var(--ease-in-out-cubic) forwards;
+	}
+}
+
+@keyframes revealLeft {
+	0% {
+		clip-path: inset(0 100% 0 0 round 1rem);
+	}
+	100% {
+		clip-path: inset(0 0 0 0 round 1rem);
+	}
+}
+
+

@@ -5,7 +5,7 @@ export const splitAnimation = () => {
 
 	const textElements = document.querySelectorAll(`[data-split-text]`);
 
-	const inViewTl = gsap.timeline({ delay: 0.15 });
+	const inViewTl = gsap.timeline({ delay: 1 });
 
 	textElements?.forEach((element: any) => {
 		element.classList.add("flex")

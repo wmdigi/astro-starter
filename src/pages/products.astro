@@ -1,0 +1,39 @@
+---
+import FilterButton from "@components/FilterButton.astro";
+import Layout from "@src/layouts/Layout.astro";
+
+import reel from "@videos/reel.mp4";
+
+const categories = ["Web Development", "Mobile Development", "Design"];
+---
+
+<Layout title="About">
+	<section
+		id="hero"
+		class="pt-[calc(var(--navbar-height)+2rem)] pb-0 w-full h-svh flex flex-col items-start justify-start gap-8 pl-8 bg-white dark:bg-dark transition-mode"
+	>
+		<h1 data-split-text>Products</h1>
+		<form
+			id="form"
+			class="w-full flex flex-col items-center justify-start gap-default"
+			hx-get={`/partials/resources/results`}
+			hx-trigger="change from:.filter-checkbox, click from:#load-more-button"
+			hx-boost="true"
+			hx-target="#resource-wrapper"
+		>
+			<div class="w-full flex flex-row items-start justify-start gap-1">
+				{categories.map((category) => <FilterButton slug={category}>{category}</FilterButton>)}
+			</div>
+			<div
+				id="resource-wrapper"
+				data-cards-reveal
+				hx-disable
+				class:list={[
+					"w-full grid grid-cols-1 gap-[clamp(0.5rem,1vw,0.75rem)] overflow-clip sm+:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+				]}
+			>
+				<slot />
+			</div>
+		</form>
+	</section>
+</Layout>
