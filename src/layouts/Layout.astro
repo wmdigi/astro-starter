@@ -17,12 +17,7 @@ const {
 } = Astro.props;
 ---
 
-<html
-	lang={lang}
-	class:list={[
-		"dark:bg-[#131313] text-black dark:text-white mounted:transition-colors mounted:duration-500 mounted:ease-out-cubic onload",
-	]}
->
+<html lang={lang} class:list={["bg-white dark:bg-[#131313] text-black dark:text-white mounted:transition-mode onload"]}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -61,7 +56,7 @@ const {
 		<title>{page_name} — {title}</title>
 
 		<!-- Google Tag Manager -->
-		<script>
+		<!-- <script>
 			(function (w: Window, d: Document, s: string, l: string, i: string) {
 				(w as any)[l] = (w as any)[l] || [];
 				(w as any)[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
@@ -72,20 +67,24 @@ const {
 				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
 				f.parentNode?.insertBefore(j, f);
 			})(window, document, "script", "dataLayer", "GTM-XXXXXX");
-		</script>
+		</script> -->
 
-		<script is:inline src="/init.js" data-swup-ignore-script></script>
-		
 		<script>
-			import "@lib/animation";
+			import { init } from "@lib/init";
+			import { initSwup } from "@lib/swup";
+
+			init();
+			// DO WE WANT TO KEEP IT REPEATING? -> swup.hooks.on("content:replace", init);
+
+			document.addEventListener("swup:enable", initSwup);
 		</script>
 	</head>
 
 	<body>
 		<Navigation />
-		<main class="flex flex-col overflow-x-clip">
+		<main id="swup" class="smooth-content flex flex-col overflow-x-clip">
 			<slot />
+			<Footer />
 		</main>
-		<Footer />
 	</body>
 </html>

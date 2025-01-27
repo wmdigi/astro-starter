@@ -1,18 +1,16 @@
+import { warn } from "@lib/logger";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { CustomEase } from "gsap/CustomEase";
-import { Flip } from "gsap/Flip";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 /* The following plugins are Club GSAP perks */
 import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText, CustomEase, Flip);
-
-let isTouch: boolean = false;
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText, ScrollSmoother); // (CustomEase, Flip, ...) -> DELETE WHICH NOW USED TO AVOID UNNECESSARY JS TO BE LOADED
 
 gsap.config({
-	//force3D: true,
+
 });
 
 let mm = gsap.matchMedia();
@@ -27,20 +25,29 @@ const breakpoints = {
 	isTouch: `(pointer: coarse)`,
 };
 
-let smoother = null;
+let smoother: ScrollSmoother;
 
 mm.add(breakpoints, (context) => {
-	const { isDesktop, isTablet, isMobile, isMouse, isTouch } = context.conditions || {};
+	const { isDesktop } = context.conditions || {};
 
 	// Smooth scroll via Lenis
-	if (true) {
-		
+	if (isDesktop) {
+		smoother = ScrollSmoother.create({
+			content: document.querySelector("main"),
+			smooth: 1,
+			effects: true,
+			normalizeScroll: true,
+			ignoreMobileResize: true,
+		});
+	} else {
+		warn("GSAP", "ScrollSmoother is disabled on touch devices");
 	}
 });
 
-const scrollTo = (anchor, offset, duration = 1) => {
+const scrollTo = (anchor: number | HTMLElement, offset: number, ease: string = "power2.inOut", duration: number = 1) => {
 	gsap.to(window, {
 		duration: duration,
+		ease: ease,
 		scrollTo: { y: anchor, offsetY: offset },
 	});
 };
@@ -55,10 +62,7 @@ export {
 	ScrollTrigger,
 	ScrollToPlugin,
 	SplitText,
-	CustomEase,
 	mm,
 	breakpoints,
 	scrollTo,
-	Flip,
-	isTouch,
 };

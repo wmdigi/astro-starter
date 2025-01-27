@@ -3,19 +3,7 @@ import Layout from "@src/layouts/Layout.astro";
 ---
 
 <Layout title="Homepage">
-	<script>
-		import { useInView } from "@lib/animation";
-	
-		swup.hooks.on("content:replace", () => {
-			useInView();
-		});
-
-		swup.hooks.on('content:replace', () => {
-			useInView();
-		}, { before: true });
-	</script>
-
-	<section id="hero" class="pt-nav pb-0 w-full h-svh flex flex-col items-start justify-end">
-		<h1 data-split-text>Starter</h1>
+	<section id="hero" class="pt-nav pb-0 w-full h-svh flex flex-col items-start justify-end bg-red-400">
+		<h1 class="animate-heading">Starter</h1>
 	</section>
 </Layout>

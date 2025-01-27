@@ -46,18 +46,16 @@ function setTheme() {
 	//console.log(MODULE, "Theme: " + theme);
 }
 
-function init() {
+export function init() {
+	console.log("Initializing...");
 	handleInitialState();
 	DARK_MODE && setTheme();
 
-	document.addEventListener("DOMContentLoaded", function () {
-		document.documentElement.classList.add("mounted");
-	});
+	document.documentElement.classList.add("mounted");
 
 	// Remove animating class after a timeout
-	setTimeout(() => {
+	let tl = setTimeout(() => {
 		document.documentElement.classList.remove("onload");
+		clearTimeout(tl);
 	}, ONLOAD_CLASS_DURATION_MS);
 }
-
-init();

@@ -1,7 +1,7 @@
 import { gsap, SplitText } from "@lib/gsap"
 
 /* SplitText animation hook */
-export const useInView = () => {
+export const splitAnimation = () => {
 
 	const textElements = document.querySelectorAll(`[data-split-text]`);
 

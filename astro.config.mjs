@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import dom from "@wmdigi/dom/astro";
-import swup from '@swup/astro';
+import swup from "@swup/astro";
 import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
@@ -13,14 +13,14 @@ export default defineConfig({
 	site,
 	base: "/",
 	vite: {
-		plugins: [tailwindcss()]
+		plugins: [tailwindcss()],
 	},
 	integrations: [
 		swup({
-			theme: `fade`,
-			progress: true,
+			theme: false, // fade, slide, overlay
+			progress: false,
 			globalInstance: true,
-			loadOnIdle: false
+			loadOnIdle: false,
 		}),
 		dom(),
 		sitemap(),
