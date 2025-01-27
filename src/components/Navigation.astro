@@ -10,18 +10,16 @@ import ThemeToggle from "@components/ThemeToggle.astro";
 const currentPath = Astro.url.pathname;
 ---
 
-<script>
+<!-- <script>
 	import { getCurrentUrl, Location } from "swup";
 
-	swup.hooks.on("content:replace", () => {
+	document.addEventListener("astro:page-load", () => {
 		$("nav a").each((link: HTMLAnchorElement) => {
-			const { url } = Location.fromUrl(link.href);
-			const current = getCurrentUrl();
+			const url = link.href;
 			$(link)[current === url ? "addClass" : "removeClass"]("underline");
 		});
 	});
-</script>
-
+</script> -->
 <nav
 	id="navigation"
 	class="navigation flex flex-col justify-between fixed top-0 left-0 w-full h-(--navbar-height) z-100 bg-sky-400/20 dark:bg-sky-600/20 transition-mode"

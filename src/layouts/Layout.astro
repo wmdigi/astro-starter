@@ -1,9 +1,11 @@
 ---
 import Navigation from "@components/Navigation.astro";
 import Footer from "@components/Footer.astro";
+import { ClientRouter } from "astro:transitions";
 
 import "@styles/typography.css";
 import "@styles/global.css";
+import "@styles/view-transitions.css";
 import "@styles/tailwind.css";
 
 const {
@@ -17,7 +19,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang={lang} class:list={["bg-white dark:bg-[#131313] text-black dark:text-white mounted:transition-mode onload"]}>
+<html lang={lang} class:list={["bg-dark dark:bg-white text-black dark:text-white mounted:transition-mode onload"]}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -55,6 +57,8 @@ const {
 
 		<title>{page_name} — {title}</title>
 
+		<ClientRouter />
+
 		<!-- Google Tag Manager -->
 		<!-- <script>
 			(function (w: Window, d: Document, s: string, l: string, i: string) {
@@ -71,18 +75,15 @@ const {
 
 		<script>
 			import { init } from "@lib/init";
-			import { initSwup } from "@lib/swup";
 
 			init();
 			// DO WE WANT TO KEEP IT REPEATING? -> swup.hooks.on("content:replace", init);
-
-			document.addEventListener("swup:enable", initSwup);
 		</script>
 	</head>
 
 	<body>
 		<Navigation />
-		<main id="swup" class="smooth-content flex flex-col overflow-x-clip">
+		<main class="smooth-content flex flex-col overflow-x-clip">
 			<slot />
 			<Footer />
 		</main>

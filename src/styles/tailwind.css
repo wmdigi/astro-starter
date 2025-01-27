@@ -23,6 +23,9 @@
 	--duration-2000: 2000ms;
 	--duration-2500: 2500ms;
 	--duration-3000: 3000ms;
+
+	/* Colors */
+	--color-dark: #131313;
 }
 
 /* Custom variants */
