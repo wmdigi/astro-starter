@@ -4,7 +4,7 @@ import { gsap, SplitText } from "@lib/gsap";
 export const splitAnimation = () => {
 	const textElements = document.querySelectorAll(`[data-split-text]`);
 
-	const inViewTl = gsap.timeline({ delay: 1 });
+	const inViewTl = gsap.timeline({ delay: 0.15 });
 
 	textElements?.forEach((element: any) => {
 		const isHeading = element instanceof HTMLHeadingElement;

@@ -17,7 +17,7 @@
 
 	/* Optional: Fade transition for the whole page */
 	::view-transition-old(root) {
-		animation: fade-out 300ms var(--ease-in-out-cubic) both;
+		animation: custom-clip-out 1500ms var(--ease-in-out-cubic) both;
 	}
 
 	/* ::view-transition-old(#navigation) {∑
@@ -25,7 +25,7 @@
 	} */
 
 	::view-transition-new(root) {
-		animation: fade-in 300ms var(--ease-in-out-cubic) both;
+		animation: custom-clip-in 2000ms 0ms var(--ease-out-cubic) both;
 	}
 
 	::view-transition-old(disabled),
@@ -152,6 +152,51 @@
 }
 
 /* 1500ms 0ms */
+@keyframes custom-clip-out {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes custom-clip-in {
+	0% {
+		transform: scale(0.4);
+		clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+	}
+	50% {
+		transform: scale(0.4);
+		clip-path: polygon(
+			0 9rem,
+			9rem 0,
+			calc(100% - 4.5rem) 0,
+			calc(100% - 4.5rem) 40%,
+			100% calc(40% + 4.5rem),
+			100% 100%,
+			65% 100%,
+			calc(65% - 6rem) calc(100% - 6rem),
+			0 calc(100% - 6rem)
+		);
+	}
+	100% {
+		transform: scale(1);
+		clip-path: polygon(
+			0 0,
+			/* 1. top left */ 50% 0,
+			/* 2. top middle */ 100% 0,
+			/* 3. top right */ 100% 50%,
+			/* 4. right middle */ 100% 100%,
+			/* 5. bottom right */ 50% 100%,
+			/* 6. bottom middle */ 0 100%,
+			/* 7. bottom left */ 0 50%,
+			/* 8. left middle */ 0 0 /* 9. back to start to close the shape */
+		);
+	}
+}
+
+/* 1500ms 0ms */
 @keyframes clip-scale-out {
 	0% {
 		opacity: 1;
@@ -173,6 +218,51 @@
 	100% {
 		transform: scale(1);
 		clip-path: inset(0 0 0 0);
+	}
+}
+
+/* 1500ms 0ms */
+@keyframes custom-clip-scale-out {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes custom-clip-scale-in {
+	0% {
+		transform: scale(0.4);
+		clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+	}
+	50% {
+		transform: scale(0.4);
+		clip-path: polygon(
+			0 9rem,
+			9rem 0,
+			calc(100% - 4.5rem) 0,
+			calc(100% - 4.5rem) 40%,
+			100% calc(40% + 4.5rem),
+			100% 100%,
+			65% 100%,
+			calc(65% - 6rem) calc(100% - 6rem),
+			0 calc(100% - 6rem)
+		);
+	}
+	100% {
+		transform: scale(1);
+		clip-path: polygon(
+			0 0,
+			/* 1. top left */ 50% 0,
+			/* 2. top middle */ 100% 0,
+			/* 3. top right */ 100% 50%,
+			/* 4. right middle */ 100% 100%,
+			/* 5. bottom right */ 50% 100%,
+			/* 6. bottom middle */ 0 100%,
+			/* 7. bottom left */ 0 50%,
+			/* 8. left middle */ 0 0 /* 9. back to start to close the shape */
+		);
 	}
 }
 
