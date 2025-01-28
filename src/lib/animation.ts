@@ -16,7 +16,7 @@ export const splitAnimation = () => {
 
 		(isHeading ? splitText.chars : splitText.lines).forEach((char: any) => {
 			const wrapper = document.createElement("div");
-			isHeading ? (wrapper.className = "overflow-x-clip") : (wrapper.className = "overflow-y-clip");
+			isHeading ? (wrapper.className = "overflow-x-clip") : (wrapper.className = "overflow-clip");
 			char.parentNode?.insertBefore(wrapper, char);
 			wrapper.appendChild(char);
 		});
@@ -29,9 +29,9 @@ export const splitAnimation = () => {
 					duration: 0.75,
 					ease: "power4.out",
 					stagger: 0.05,
-					// onComplete: () => {
-					// 	splitText.revert();
-					// },
+					onComplete: () => {
+						splitText.revert();
+					},
 				},
 				"<10%",
 			);
@@ -43,9 +43,9 @@ export const splitAnimation = () => {
 					duration: 0.75,
 					ease: "power4.out",
 					stagger: 0.05,
-					// onComplete: () => {
-					// 	splitText.revert();
-					// },
+					onComplete: () => {
+						splitText.revert();
+					},
 				},
 				"<10%",
 			);
