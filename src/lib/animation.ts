@@ -16,7 +16,7 @@ export const splitAnimation = () => {
 
 		(isHeading ? splitText.chars : splitText.lines).forEach((char: any) => {
 			const wrapper = document.createElement("div");
-			isHeading ? (wrapper.className = "overflow-x-clip") : (wrapper.className = "overflow-clip");
+			isHeading ? (wrapper.className = "overflow-x-clip") : (wrapper.className = "overflow-hidden");
 			char.parentNode?.insertBefore(wrapper, char);
 			wrapper.appendChild(char);
 		});
