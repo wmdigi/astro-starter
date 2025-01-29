@@ -41,11 +41,7 @@
 		animation: filter-in 300ms 300ms var(--ease-out-cubic) both;
 	}
 
-	::view-transition-old(navigation) {
-		animation-duration: 300ms;
-		animation-delay: 300ms;
-	}
-
+	::view-transition-old(navigation),
 	::view-transition-new(navigation) {
 		animation-duration: 300ms;
 		animation-delay: 300ms;
