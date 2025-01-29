@@ -2,6 +2,6 @@
 const { class: className, ...props } = Astro.props;
 ---
 
-<button class:list={["button", className]} {...props}>
+<button class:list={["button transition-mode", className]} {...props}>
 	<slot />
 </button>

@@ -7,8 +7,10 @@ export const splitAnimation = () => {
 	const inViewTl = gsap.timeline({ delay: 0.15 });
 
 	textElements?.forEach((element: any) => {
+		console.log(element.classList);
 		const isHeading = element instanceof HTMLHeadingElement;
 		isHeading && element.classList.add("flex");
+		element.style.opacity = "100%"
 		const splitText = new SplitText(element, {
 			type: isHeading ? "chars" : "lines",
 			linesClass: "overflow-hidden",

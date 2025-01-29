@@ -1,4 +1,9 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-declare const swup: any;
+declare namespace App {
+	interface Locals {
+		user: any;
+		cart: any;
+	}
+}

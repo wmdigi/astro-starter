@@ -1,6 +1,9 @@
 ---
 import Navigation from "@components/Navigation.astro";
 import Footer from "@components/Footer.astro";
+import Modal from "@components/Modal.astro";
+import Login from "@components/Login.astro";
+import Register from "@components/Register.astro";
 
 import "@styles/typography.css";
 import "@styles/global.css";
@@ -19,7 +22,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang={lang} class:list={["bg-dark dark:bg-white text-black dark:text-white mounted:transition-mode onload"]}>
+<html lang={lang} class:list={["bg-white dark:bg-dark text-black dark:text-white mounted:transition-mode onload"]}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,7 +51,7 @@ const {
 		/>
 		<link href={`/favicon-dark.svg`} media="(prefers-color-scheme: dark)" rel="shortcut icon" type="image/x-icon" />
 
-		<link href={`/touchicon.png`} rel="apple-touch-icon" />
+		<link href={`/touchicon.svg`} rel="apple-touch-icon" />
 
 		<link rel="sitemap" href={`sitemap-index.xml`} />
 		<link rel="preload" href="/fonts/codec-pro-news.woff" as="font" type="font/woff" crossorigin />
@@ -80,6 +83,12 @@ const {
 
 	<body>
 		<Navigation />
+		<Modal id="login">
+			<Login slot="modal" />
+		</Modal>
+		<Modal id="register">
+			<Register slot="modal" />
+		</Modal>
 		<main id="smooth-content" class="flex flex-col overflow-x-clip">
 			<slot />
 			<Footer />

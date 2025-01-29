@@ -17,7 +17,7 @@
 
 	/* Optional: Fade transition for the whole page */
 	::view-transition-old(root) {
-		animation: custom-clip-out 1500ms var(--ease-in-out-cubic) both;
+		animation: fade-out 300ms var(--ease-in-out-cubic) both;
 	}
 
 	/* ::view-transition-old(#navigation) {∑
@@ -25,7 +25,7 @@
 	} */
 
 	::view-transition-new(root) {
-		animation: custom-clip-in 2000ms 0ms var(--ease-out-cubic) both;
+		animation: fade-in 300ms 0ms var(--ease-out-cubic) both;
 	}
 
 	::view-transition-old(disabled),
@@ -39,6 +39,16 @@
 
 	::view-transition-new(products) {
 		animation: filter-in 300ms 300ms var(--ease-out-cubic) both;
+	}
+
+	::view-transition-old(navigation) {
+		animation-duration: 300ms;
+		animation-delay: 500ms;
+	}
+
+	::view-transition-new(navigation) {
+		animation-duration: 300ms;
+		animation-delay: 500ms;
 	}
 }
 

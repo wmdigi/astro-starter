@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+[data-split-text] {
+	@apply opacity-0;
+}
+
 @layer components {
 	.hero-video {
 		clip-path: polygon(

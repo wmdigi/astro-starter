@@ -3,7 +3,7 @@ const { slug } = Astro.props;
 ---
 
 <label
-	class="group h-[3.125rem] border border-black/20 rounded-full px-5 cursor-pointer has-[:checked]:bg-black text-black has-[:checked]:text-white transition-default flex items-center justify-center"
+	class="group h-[3.125rem] border border-black/20 dark:border-white/20 rounded-full px-5 cursor-pointer has-[:checked]:bg-black dark:has-[:checked]:bg-white text-black dark:text-white has-[:checked]:text-white dark:has-[:checked]:text-black transition-mode flex items-center justify-center"
 >
 	<input
 		type="checkbox"
@@ -14,7 +14,9 @@ const { slug } = Astro.props;
 		name="categories[]"
 		class="hidden peer"
 	/>
-	<p class="text-black group-has-[:checked]:text-white select-none text-sm/[130%] xl:text-base/[130%]">
+	<p
+		class="text-black dark:text-white group-has-[:checked]:text-white dark:group-has-[:checked]:text-black select-none text-sm/[130%] xl:text-base/[130%] transition-mode"
+	>
 		<slot />
 	</p>
 </label>
