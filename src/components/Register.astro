@@ -19,7 +19,7 @@ const result = Astro.getActionResult(actions.user.createUser);
 	$("#form-register").on("submit", async (event: SubmitEvent) => {
 		event.preventDefault();
 		const formData = new FormData($("#form-register").first as HTMLFormElement); // ??
-		const { data, error } = await actions.user.createUser(formData);
+		const { data } = await actions.user.createUser(formData);
 
 		if (data) {
 			$(document.documentElement).addClass("logged-in");

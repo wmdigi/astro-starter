@@ -12,7 +12,7 @@ const result = Astro.getActionResult(actions.user.getUser);
 	$("#form-login").on("submit", async (event: SubmitEvent) => {
 		event.preventDefault();
 		const formData = new FormData($("#form-login").first as HTMLFormElement); // ??
-		const { data, error } = await actions.user.getUser(formData);
+		const { data } = await actions.user.getUser(formData);
 
 		if (data) {
 			console.log("User logged in", data);

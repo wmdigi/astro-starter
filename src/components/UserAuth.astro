@@ -29,7 +29,7 @@ const locals = Astro.locals;
 		}
 		event.preventDefault();
 		const formData = new FormData($("#user-auth").first as HTMLFormElement); // ??
-		const { data, error } = await actions.user.logoutUser(formData);
+		const { data } = await actions.user.logoutUser(formData);
 
 		if (data?.success) {
 		}
