@@ -1,46 +1,6 @@
 ---
 import Layout from "@src/layouts/Layout.astro";
 import { Image } from "astro:assets";
-
-import playground1 from "@images/playgrounds/1.jpg";
-import playground2 from "@images/playgrounds/2.jpg";
-import playground3 from "@images/playgrounds/3.jpg";
-import playground4 from "@images/playgrounds/4.jpg";
-import playground5 from "@images/playgrounds/5.jpg";
-import playground6 from "@images/playgrounds/6.jpg";
-import playground7 from "@images/playgrounds/7.jpg";
-import playground8 from "@images/playgrounds/8.jpg";
-import playground9 from "@images/playgrounds/9.jpg";
-import playground10 from "@images/playgrounds/10.jpg";
-import playground11 from "@images/playgrounds/11.jpg";
-import playground12 from "@images/playgrounds/12.jpg";
-import playground13 from "@images/playgrounds/13.jpg";
-import playground14 from "@images/playgrounds/14.jpg";
-import playground15 from "@images/playgrounds/15.jpg";
-import playground16 from "@images/playgrounds/16.jpg";
-import playground17 from "@images/playgrounds/17.jpg";
-import playground18 from "@images/playgrounds/18.jpg";
-
-const playgrounds = [
-	playground1,
-	playground2,
-	playground3,
-	playground4,
-	playground5,
-	playground6,
-	playground7,
-	playground8,
-	playground9,
-	playground10,
-	playground11,
-	playground12,
-	playground13,
-	playground14,
-	playground15,
-	playground16,
-	playground17,
-	playground18,
-];
 ---
 
 <Layout title="About">
@@ -51,14 +11,12 @@ const playgrounds = [
 		<h1 data-split-text>Gallery</h1>
 		<div class="w-full grid grid-cols-4 gap-2 pb-8">
 			{
-				playgrounds.map((image, index) => (
+				[...Array(16)].map((_, index) => (
 					<div class="overflow-hidden">
-						<Image
-							src={image}
+						<img
+							src={`/playgrounds/${index + 1}.jpg`}
 							alt={`Playground ${index + 1}`}
 							class="w-full object-contain scale-[1.01]"
-							format="jpg"
-							quality={100}
 						/>
 					</div>
 				))
