@@ -3,6 +3,7 @@ import placeholder from "@images/placeholder.jpg";
 export const navLinks: Array<{ name: string; url: string }> = [
 	{ name: "Home", url: "/" },
 	{ name: "About", url: "/about" },
+	{ name: "Gallery", url: "/gallery" },
 	{ name: "Products", url: "/products" },
 ];
 
