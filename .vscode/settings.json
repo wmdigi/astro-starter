@@ -19,5 +19,13 @@
 	"clampExtension.globalMinViewport": 1024,
 	"clampExtension.globalMaxViewport": 1920,
 	"clampExtension.baseFontSize": 16,
-	"clampExtension.showComments": false
+	"clampExtension.showComments": false,
+	"files.watcherExclude": {
+		"**/.git/objects/**": true,
+		"**/.git/subtree-cache/**": true,
+		"**/.hg/store/**": true,
+		"**/.git/**": true,
+		"**/node_modules/**": true,
+		"**/.vscode/**": true
+	}
 }
