@@ -1,148 +1,62 @@
-@import "tailwindcss";
-
-html {
-	font-family: "codec-pro", system-ui, sans-serif;
-	scrollbar-gutter: stable;
-	overflow: clip scroll;
-	touch-action: pan-y;
-}
-
-html,
-body {
-	margin: 0;
-	height: 100%;
-}
-
-body {
-	@apply flex min-h-[100dvh] flex-col;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-	@apply font-bold leading-normal;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-kerning: none;
-	-webkit-text-rendering: optimizeSpeed;
-	text-rendering: optimizeSpeed;
-	-webkit-transform: translateZ(0);
-	transform: translateZ(0);
-}
-
-/* section {
-	@apply py-7 sm:py-9 md:py-12 lg:py-16;
-} */
-
-h1 {
-	@apply text-[12vw]/[75%] md:text-[15vw]/[75%] md:-tracking-[0.2vw];
-}
-
-h2 {
-	@apply text-[clamp(6.25rem,-7.5rem+25vw,20rem)]/[80%];
-}
-
-h4 {
-	@apply text-[clamp(3rem,2rem+2.667vw,4rem)]/[80%];
-}
-
-h5 {
-	@apply text-[clamp(2.5rem,1.5rem+1.333vw,3rem)]/[80%];
-}
-
-h6 {
-	@apply text-[clamp(1rem,1.2vw,1.5rem)]/[120%] font-light uppercase;
-}
-
-p {
-	@apply text-base/[120%] font-light;
-}
-
-.xxx {
-	@apply border border-sky-500/30 bg-sky-500/30;
-}
-
-.container {
-	@apply mx-auto w-full h-full px-4 sm:px-8;
-}
-
-.button {
-	@apply h-12 lg:h-16 bg-black dark:bg-white dark:hover:bg-transparent hover:bg-transparent text-white dark:text-black hover:text-black dark:hover:text-white border border-black dark:border-white rounded-full px-12 flex items-center justify-center uppercase font-medium;
-
-	&.small {
-		@apply h-12 px-6;
+@layer components {
+	/* Layout */
+	section {
+		@apply relative;
 	}
-}
 
-.dot {
-	/* Small dot divider */
-	@apply w-1 h-1 rounded-full bg-black/30 dark:bg-white/30 shrink-0;
-}
+	.container {
+		@apply mx-auto h-full px-md;
+	}
 
-.hover {
-	/* Helper global hover effect */
-	@apply hover:opacity-60! transition-opacity duration-300;
-}
+	.pt-nav {
+		@apply pt-(--navbar-height);
+	}
 
-.pt-nav {
-	@apply pt-(--navbar-height);
-}
+	/* Typography */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-semibold leading-none;
+	}
 
-hr {
-	@apply h-px w-full bg-black/10 dark:bg-white/10 border-none;
-}
+	.h1 {
+		@apply text-9xl;
+	}
 
-/* Custom font override
-.font-inter {
-	font-family: Inter, system-ui, sans-serif;
-}
-*/
+	.h2 {
+		@apply text-7xl;
+	}
 
-.scroll-disabled {
-	overflow: hidden;
-	touch-action: none;
-}
+	.h3 {
+		@apply text-5xl;
+	}
 
-input:-internal-autofill-selected {
-	background-color: transparent !important;
-}
+	.h4 {
+		@apply text-4xl;
+	}
 
-/* Global variables */
-:root {
-	--navbar-height-closed: 100px;
-	--navbar-height: var(--navbar-height-closed);
-}
+	.h5 {
+		@apply text-2xl;
+	}
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
+	.h6 {
+		@apply text-xl;
+	}
 
-/* Firefox */
-input[type="number"] {
-	-moz-appearance: textfield;
-}
+	/* UI */
+	.button {
+		@apply relative h-[clamp(2.5rem,1.921rem+2.469vw,3.5rem)] lg:h-[clamp(2.5rem,0.786rem+2.679vw,4rem)] text-lg lg:text-lg px-lg flex items-center justify-center rounded-full bg-black dark:bg-white text-white dark:text-black hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white border border-black dark:border-white font-semibold transition-hover cursor-pointer;
 
-/* svg fill currentColor path by default */
-svg path:not([fill]) {
-	fill: currentColor;
-}
+		&.secondary {
+			@apply bg-transparent text-black dark:text-white border-black dark:border-white hover:bg-neutral-100 dark:hover:bg-neutral-800;
+		}
+	}
 
-/* navigation opened */
-.navigation-opened .navigation-links {
-	@apply pointer-events-auto opacity-100 h-lvh lg:h-full;
-}
-.navigation-opened .navigation-links a {
-	@apply opacity-100 translate-y-0;
+	/* Utility */
+	.xxx {
+		@apply border border-sky-500/30 bg-sky-500/30;
+	}
 }

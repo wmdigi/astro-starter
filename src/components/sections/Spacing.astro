@@ -1,0 +1,28 @@
+---
+import Section from "@components/Section.astro";
+
+const elements = [
+	{ class: "size-(--padding-6xl)", label: "6xl" },
+	{ class: "size-(--padding-5xl)", label: "5xl" },
+	{ class: "size-(--padding-4xl)", label: "4xl" },
+	{ class: "size-(--padding-3xl)", label: "3xl" },
+	{ class: "size-(--padding-2xl)", label: "2xl" },
+	{ class: "size-(--padding-xl)", label: "xl" },
+	{ class: "size-(--padding-lg)", label: "lg" },
+	{ class: "size-(--padding-md)", label: "md" },
+	{ class: "size-(--padding-base)", label: "base" },
+	{ class: "size-(--padding-sm)", label: "sm" },
+	{ class: "size-(--padding-xs)", label: "xs" },
+];
+---
+
+<Section id="spacing" title="Spacing">
+	{
+		elements.map(({ class: className, label }) => (
+			<div class="w-full flex flex-row items-end justify-start gap-lg">
+				<div class={className + " flex items-center justify-center xxx"} />
+				<p class="text-2xl">{label}</p>
+			</div>
+		))
+	}
+</Section>

@@ -1,17 +1,17 @@
 ---
+// Components
 import Layout from "@src/layouts/Layout.astro";
-
-import reel from "@videos/reel.mp4";
+import Button from "@components/Button.astro";
 ---
 
-<Layout title="Homepage">
+<Layout>
 	<section
 		id="hero"
-		class="pt-nav pb-0 w-full h-svh flex flex-col items-start justify-end gap-8 pl-8 bg-white dark:bg-dark transition-mode"
+		class="pt-nav w-full h-svh flex flex-col items-center justify-center gap-xl bg-white dark:bg-dark transition-mode"
 	>
-		<div class="hero-video-wrapper">
-			<video src={reel} autoplay playsinline loop muted class="hero-video w-[clamp(15rem,30vw,40rem)]"></video>
-		</div>
-		<h1 data-split-text>Starter</h1>
+		<h1 class="h1 leading-[65%]">starter</h1>
+		<a href="/library">
+			<Button>Get Started</Button>
+		</a>
 	</section>
 </Layout>

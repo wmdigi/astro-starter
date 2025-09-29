@@ -16,5 +16,8 @@
 	"workbench.editor.enablePreviewFromQuickOpen": false,
 	"prettier.tabWidth": 4,
 	"prettier.printWidth": 120,
-	"cSpell.words": ["directus", "swup"]
+	"clampExtension.globalMinViewport": 1024,
+	"clampExtension.globalMaxViewport": 1920,
+	"clampExtension.baseFontSize": 16,
+	"clampExtension.showComments": false
 }

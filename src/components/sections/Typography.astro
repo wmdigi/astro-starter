@@ -1,0 +1,27 @@
+---
+import Section from "@components/Section.astro";
+
+const elements = [
+	{ class: "text-9xl", label: "text-9xl" },
+	{ class: "text-8xl", label: "text-8xl" },
+	{ class: "text-7xl", label: "text-7xl" },
+	{ class: "text-6xl", label: "text-6xl" },
+	{ class: "text-5xl", label: "text-5xl" },
+	{ class: "text-4xl", label: "text-4xl" },
+	{ class: "text-3xl", label: "text-3xl" },
+	{ class: "text-2xl", label: "text-2xl" },
+	{ class: "text-xl", label: "text-xl" },
+	{ class: "text-lg", label: "text-lg" },
+	{ class: "text-base", label: "text-base" },
+	{ class: "text-sm", label: "text-sm" },
+	{ class: "text-xs", label: "text-xs" },
+];
+---
+
+<Section id="typography" title="Typography" class="pt-nav">
+	{
+		elements.map(({ class: className, label }) => (
+			<p class:list={["leading-[85%] font-semibold", className]}>{label}</p>
+		))
+	}
+</Section>

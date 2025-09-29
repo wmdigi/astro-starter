@@ -1,0 +1,22 @@
+---
+const { id, title, grid, class: className = "" } = Astro.props;
+---
+
+<section {id} class:list={["group/section bg-white dark:bg-dark transition-mode", className]}>
+	<div
+		class:list={[
+			"container py-2xl flex flex-col items-start justify-start gap-lg",
+			"group-first/section:before:hidden before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:w-full before:h-px before:bg-gradient-to-r before:from-transparent before:via-neutral-100 dark:before:via-neutral-800 before:to-transparent before:max-w-(--w-container)",
+		]}
+	>
+		<p class="text-xl px-md py-xs bg-neutral-100 dark:bg-neutral-500 rounded-full">{title}</p>
+		<div
+			class:list={[
+				"w-full gap-md",
+				grid ? "grid grid-cols-2 place-items-stretch" : "flex flex-col items-start justify-start",
+			]}
+		>
+			<slot />
+		</div>
+	</div>
+</section>

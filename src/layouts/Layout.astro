@@ -2,15 +2,11 @@
 import Navigation from "@components/Navigation.astro";
 import Footer from "@components/Footer.astro";
 
-import "@styles/typography.css";
-import "@styles/global.css";
-import "@styles/animations.css";
-import "@styles/view-transitions.css";
-import "@styles/tailwind.css";
+import "@styles/style.css";
 
 const {
 	page_name = "Astro Starter",
-	title = "Home",
+	title = "Wonder Makers",
 	description = "Description",
 	shareImage = `/shareimage.jpg`,
 	themeColor = "#fff",
@@ -19,7 +15,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang={lang} class:list={["bg-dark dark:bg-white text-black dark:text-white mounted:transition-mode onload"]}>
+<html lang={lang} class:list={["bg-dark dark:bg-white text-black dark:text-white"]}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,30 +53,12 @@ const {
 
 		<title>{page_name} — {title}</title>
 
-		<!-- Google Tag Manager -->
-		<!-- <script>
-			(function (w: Window, d: Document, s: string, l: string, i: string) {
-				(w as any)[l] = (w as any)[l] || [];
-				(w as any)[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-				const f = d.getElementsByTagName(s)[0];
-				const j = d.createElement(s) as HTMLScriptElement;
-				const dl = l != "dataLayer" ? "&l=" + l : "";
-				j.async = true;
-				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-				f.parentNode?.insertBefore(j, f);
-			})(window, document, "script", "dataLayer", "GTM-XXXXXX");
-		</script> -->
-
 		<script is:inline src="/init.js"></script>
-
-		<script>
-			import "@lib/animation";
-		</script>
 	</head>
 
 	<body>
 		<Navigation />
-		<main id="smooth-content" class="flex flex-col overflow-x-clip">
+		<main class="flex flex-col overflow-x-clip">
 			<slot />
 			<Footer />
 		</main>

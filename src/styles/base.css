@@ -1,0 +1,42 @@
+html {
+	font-family: "codec-pro", system-ui, sans-serif;
+	scrollbar-gutter: stable;
+	overflow: clip scroll;
+	touch-action: pan-y;
+}
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+}
+
+body {
+	@apply flex min-h-[100dvh] flex-col;
+}
+
+.scroll-disabled {
+	overflow: hidden;
+	touch-action: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}
+
+.no-scrollbar {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-kerning: none;
+	-webkit-text-rendering: optimizeSpeed;
+	text-rendering: optimizeSpeed;
+}

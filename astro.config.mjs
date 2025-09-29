@@ -18,8 +18,4 @@ export default defineConfig({
 	},
 	integrations: [htmx(), dom(), sitemap()],
 	adapter: vercel(),
-	experimental: {
-		// import SVG files as components
-		svg: true,
-	},
 });

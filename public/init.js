@@ -1,7 +1,6 @@
 const MODULE = "init()";
 const TIMEOUT_MINUTES = 1; // minutes before the initial visit is reset
 const INITIAL_CLASS_DURATION_MS = 1500;
-const ONLOAD_CLASS_DURATION_MS = 800;
 const DARK_MODE = true;
 
 function shouldSetInitialState() {
@@ -54,12 +53,6 @@ function init() {
 	document.addEventListener("DOMContentLoaded", () => {
 		document.documentElement.classList.add("mounted");
 	});
-
-	// Remove animating class after a timeout
-	let tl = setTimeout(() => {
-		document.documentElement.classList.remove("onload");
-		clearTimeout(tl);
-	}, ONLOAD_CLASS_DURATION_MS);
 }
 
 init();

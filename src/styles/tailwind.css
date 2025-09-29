@@ -1,70 +1,229 @@
 @import "tailwindcss";
 
 @theme {
+	/* Custom */
+	--navbar-height: clamp(3rem, calc(0.143rem + 4.464vw), 5.5rem); /* 48px - 88px */
+
 	/* Breakpoints */
-	--breakpoint-xs: 375px;
-	--breakpoint-sm: 440px;
+	--breakpoint-xs: 380px;
+	--breakpoint-sm: 640px;
 	--breakpoint-md: 768px;
-	--breakpoint-lg: 1024px;
+	--breakpoint-lg: 1025px;
 	--breakpoint-xl: 1366px;
 	--breakpoint-2xl: 1440px;
 	--breakpoint-3xl: 1920px;
 	--breakpoint-4xl: 2560px;
+
+	/* Colors */
+	--color-neutral-50: #f6f6f6;
+	--color-neutral-100: #e7e7e7;
+	--color-neutral-200: #d1d1d1;
+	--color-neutral-300: #b0b0b0;
+	--color-neutral-400: #888888;
+	--color-neutral-500: #6d6d6d;
+	--color-neutral-600: #5d5d5d;
+	--color-neutral-700: #4f4f4f;
+	--color-neutral-800: #454545;
+	--color-neutral-900: #1a1a1a;
+	--color-neutral-950: #0a0a0a;
+
+	--color-success: #4ade80;
+	--color-error: #dc2626;
+
+	--color-dark: #151413;
+
+	/* Font Family */
+	--font-aeonik: "aeonik", system-ui, sans-serif;
+
+	/* Font size */
+	--text-xs: 0.75rem;
+	--text-sm: clamp(0.75rem, calc(0.625rem + 0.333vw), 0.875rem); /* 12px - 14px */
+	--text-base: clamp(0.75rem, calc(0.464rem + 0.446vw), 1rem); /* 12px - 16px */
+	--text-lg: clamp(0.75rem, calc(0.321rem + 0.67vw), 1.125rem); /* 12px - 18px */
+	--text-xl: clamp(0.875rem, calc(0.446rem + 0.67vw), 1.25rem); /* 14px - 20px */
+	--text-2xl: clamp(0.875rem, calc(0.161rem + 1.116vw), 1.5rem); /* 14px - 24px */
+	--text-3xl: clamp(1rem, calc(0.143rem + 1.339vw), 1.75rem); /* 16px - 28px */
+	--text-4xl: clamp(1.125rem, calc(0.125rem + 1.563vw), 2rem); /* 18px - 32px */
+	--text-5xl: clamp(2rem, calc(0.857rem + 1.786vw), 3rem); /* 32px - 48px */
+	--text-6xl: clamp(2.125rem, calc(-0.018rem + 3.348vw), 4rem); /* 34px - 64px */
+	--text-7xl: clamp(3.25rem, calc(0.107rem + 4.911vw), 6rem); /* 52px - 96px */
+	--text-8xl: clamp(4rem, calc(0rem + 6.25vw), 7.5rem); /* 64px - 120px */
+	--text-9xl: clamp(6.625rem, calc(-0.089rem + 10.491vw), 12.5rem); /* 106px - 200px */
+
+	/* Line Height */
+	--leading-normal: 1.15;
+
+	/* Tracking */
+	--tracking-tighter: -0.05em;
+	--tracking-tight: -0.025em;
+	--tracking-normal: 0em;
+	--tracking-wide: 0.025em;
+	--tracking-wider: 0.05em;
+	--tracking-widest: 0.1em;
+
+	/* Padding */
+	--padding-xs: clamp(0.25rem, calc(-0.036rem + 0.446vw), 0.5rem); /* 4px - 8px */
+	--padding-sm: clamp(0.5rem, calc(0.214rem + 0.446vw), 0.75rem); /* 8px - 12px */
+	--padding-base: clamp(0.75rem, calc(0.464rem + 0.446vw), 1rem); /* 12px - 16px */
+	--padding-md: clamp(0.875rem, calc(0.161rem + 1.116vw), 1.5rem); /* 14px - 24px */
+	--padding-lg: clamp(1rem, calc(-0.143rem + 1.786vw), 2rem); /* 16px - 32px */
+	--padding-xl: clamp(1.5rem, calc(-0.214rem + 2.679vw), 3rem); /* 24px - 48px */
+	--padding-2xl: clamp(2rem, calc(-0.286rem + 3.571vw), 4rem); /* 32px - 64px */
+	--padding-3xl: clamp(3.25rem, calc(0.107rem + 4.911vw), 6rem); /* 52px - 96px */
+	--padding-4xl: clamp(4.25rem, calc(-0.036rem + 6.696vw), 8rem); /* 68px - 128px */
+	--padding-5xl: clamp(5.375rem, calc(0.089rem + 8.259vw), 10rem); /* 86px - 160px */
+	--padding-6xl: clamp(6.625rem, calc(-0.089rem + 10.491vw), 12.5rem); /* 106px - 200px */
+
+	/* Margin */
+	--margin-xs: clamp(0.25rem, calc(-0.036rem + 0.446vw), 0.5rem); /* 4px - 8px */
+	--margin-sm: clamp(0.5rem, calc(0.214rem + 0.446vw), 0.75rem); /* 8px - 12px */
+	--margin-base: clamp(0.75rem, calc(0.464rem + 0.446vw), 1rem); /* 12px - 16px */
+	--margin-md: clamp(0.875rem, calc(0.161rem + 1.116vw), 1.5rem); /* 14px - 24px */
+	--margin-lg: clamp(1rem, calc(-0.143rem + 1.786vw), 2rem); /* 16px - 32px */
+	--margin-xl: clamp(1.5rem, calc(-0.214rem + 2.679vw), 3rem); /* 24px - 48px */
+	--margin-2xl: clamp(2rem, calc(-0.286rem + 3.571vw), 4rem); /* 32px - 64px */
+	--margin-3xl: clamp(3.25rem, calc(0.107rem + 4.911vw), 6rem); /* 52px - 96px */
+	--margin-4xl: clamp(4.25rem, calc(-0.036rem + 6.696vw), 8rem); /* 68px - 128px */
+	--margin-5xl: clamp(5.375rem, calc(0.089rem + 8.259vw), 10rem); /* 86px - 160px */
+	--margin-6xl: clamp(6.625rem, calc(-0.089rem + 10.491vw), 12.5rem); /* 106px - 200px */
+
+	/* Gap */
+	--gap-xs: clamp(0.25rem, calc(-0.036rem + 0.446vw), 0.5rem); /* 4px - 8px */
+	--gap-sm: clamp(0.5rem, calc(0.214rem + 0.446vw), 0.75rem); /* 8px - 12px */
+	--gap-base: clamp(0.75rem, calc(0.464rem + 0.446vw), 1rem); /* 12px - 16px */
+	--gap-md: clamp(0.875rem, calc(0.161rem + 1.116vw), 1.5rem); /* 14px - 24px */
+	--gap-lg: clamp(1rem, calc(-0.143rem + 1.786vw), 2rem); /* 16px - 32px */
+	--gap-xl: clamp(1.5rem, calc(-0.214rem + 2.679vw), 3rem); /* 24px - 48px */
+	--gap-2xl: clamp(2rem, calc(-0.286rem + 3.571vw), 4rem); /* 32px - 64px */
+	--gap-3xl: clamp(3.25rem, calc(0.107rem + 4.911vw), 6rem); /* 52px - 96px */
+	--gap-4xl: clamp(4.25rem, calc(-0.036rem + 6.696vw), 8rem); /* 68px - 128px */
+	--gap-5xl: clamp(5.375rem, calc(0.089rem + 8.259vw), 10rem); /* 86px - 160px */
+	--gap-6xl: clamp(6.625rem, calc(-0.089rem + 10.491vw), 12.5rem); /* 106px - 200px */
+
+	/* Rounded corners */
+	--radius-xs: 0.125rem;
+	--radius-sm: 0.25rem;
+	--radius-md: 0.375rem;
+	--radius-lg: clamp(0.25rem, calc(-0.036rem + 0.446vw), 0.5rem); /* 4px - 8px */
+	--radius-xl: clamp(0.375rem, calc(-0.054rem + 0.67vw), 0.75rem); /* 6px - 12px */
+	--radius-2xl: clamp(0.625rem, calc(0.196rem + 0.67vw), 1rem); /* 10px - 16px */
+	--radius-3xl: clamp(0.875rem, calc(0.161rem + 1.116vw), 1.5rem) /* 14px - 24px */;
+	--radius-4xl: clamp(1rem, calc(-0.143rem + 1.786vw), 2rem); /* 16px - 32px */
+
+	/* Width */
+	--w-container: clamp(32rem, 0rem + 50vw, 60rem); /* 512px - 960px */
 
 	/* Easing functions */
 	--ease-in-cubic: cubic-bezier(0.5, 0, 0.6, 0.2);
 	--ease-out-cubic: cubic-bezier(0.2, 0.6, 0.35, 1);
 	--ease-in-out-cubic: cubic-bezier(0.6, 0, 0.35, 1);
 	--ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+	--ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+	--ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
 	--ease-in-out-quart: cubic-bezier(0.8, 0, 0.2, 1);
+	--ease-in-out-quint: cubic-bezier(0.655, 0, 0, 1.005);
 
 	/* Durations */
+	--duration-1000: 1000ms;
 	--duration-1500: 1500ms;
 	--duration-2000: 2000ms;
 	--duration-2500: 2500ms;
 	--duration-3000: 3000ms;
 
-	/* Colors */
-	--color-dark: #131313;
+	/* Delays */
+	--delay-1000: 1000ms;
+	--delay-1500: 1500ms;
+	--delay-2000: 2000ms;
+	--delay-2500: 2500ms;
+	--delay-3000: 3000ms;
+}
+
+@layer theme {
+	:root {
+		@media (max-width: 1024px) {
+			/* Custom */
+			--navbar-height: clamp(5rem, calc(4.711rem + 1.235vw), 5.5rem); /* 80px - 88px */
+
+			/* Font size */
+			--text-xs: 0.75rem;
+			--text-sm: clamp(0.75rem, calc(0.678rem + 0.309vw), 0.875rem); /* 12px - 14px */
+			--text-base: clamp(0.875rem, calc(0.803rem + 0.309vw), 1rem); /* 14px - 16px */
+			--text-lg: clamp(0.875rem, calc(0.73rem + 0.617vw), 1.125rem); /* 14px - 18px */
+			--text-xl: clamp(1rem, calc(0.855rem + 0.617vw), 1.25rem); /* 16px - 20px */
+			--text-2xl: clamp(1.25rem, calc(1.105rem + 0.617vw), 1.5rem); /* 20px - 24px */
+			--text-3xl: clamp(1.375rem, calc(0.946rem + 0.67vw), 1.75rem); /* 22px - 28px */
+			--text-4xl: clamp(1.5rem, calc(1.211rem + 1.235vw), 2rem); /* 24px - 32px */
+			--text-5xl: clamp(2rem, calc(1.421rem + 2.469vw), 3rem); /* 32px - 48px */
+			--text-6xl: clamp(2.5rem, calc(1.632rem + 3.704vw), 4rem); /* 40px - 64px */
+			--text-7xl: clamp(3rem, calc(1.264rem + 7.407vw), 6rem); /* 48px - 96px */
+			--text-8xl: clamp(3.5rem, calc(1.185rem + 9.877vw), 7.5rem); /* 56px - 120px */
+			--text-9xl: clamp(4rem, calc(0.528rem + 14.815vw), 10rem); /* 64px - 200px */
+
+			/* Padding */
+			--padding-xs: clamp(0.25rem, calc(0.105rem + 0.617vw), 0.5rem); /* 4px - 8px */
+			--padding-sm: clamp(0.5rem, calc(0.355rem + 0.617vw), 0.75rem); /* 8px - 12px */
+			--padding-base: clamp(0.75rem, calc(0.605rem + 0.617vw), 1rem); /* 12px - 16px */
+			--padding-md: clamp(0.875rem, calc(0.513rem + 1.543vw), 1.5rem); /* 14px - 24px */
+			--padding-lg: clamp(1rem, calc(0.421rem + 2.469vw), 2rem); /* 16px - 32px */
+			--padding-xl: clamp(1.5rem, calc(0.632rem + 3.704vw), 3rem); /* 24px - 48px */
+			--padding-2xl: clamp(2rem, calc(0.843rem + 4.938vw), 4rem); /* 32px - 64px */
+			--padding-3xl: clamp(3.25rem, calc(1.659rem + 6.79vw), 6rem); /* 52px - 96px */
+			--padding-4xl: clamp(4.25rem, calc(2.08rem + 9.259vw), 8rem); /* 68px - 128px */
+			--padding-5xl: clamp(5.375rem, calc(2.698rem + 11.42vw), 10rem); /* 86px - 160px */
+			--padding-6xl: clamp(6.625rem, calc(3.225rem + 14.506vw), 12.5rem); /* 106px - 200px */
+
+			/* Margin */
+			--margin-xs: clamp(0.25rem, calc(0.105rem + 0.617vw), 0.5rem); /* 4px - 8px */
+			--margin-sm: clamp(0.5rem, calc(0.355rem + 0.617vw), 0.75rem); /* 8px - 12px */
+			--margin-base: clamp(0.75rem, calc(0.605rem + 0.617vw), 1rem); /* 12px - 16px */
+			--margin-md: clamp(0.875rem, calc(0.513rem + 1.543vw), 1.5rem); /* 14px - 24px */
+			--margin-lg: clamp(1rem, calc(0.421rem + 2.469vw), 2rem); /* 16px - 32px */
+			--margin-xl: clamp(1.5rem, calc(0.632rem + 3.704vw), 3rem); /* 24px - 48px */
+			--margin-2xl: clamp(2rem, calc(0.843rem + 4.938vw), 4rem); /* 32px - 64px */
+			--margin-3xl: clamp(3.25rem, calc(1.659rem + 6.79vw), 6rem); /* 52px - 96px */
+			--margin-4xl: clamp(4.25rem, calc(2.08rem + 9.259vw), 8rem); /* 68px - 128px */
+			--margin-5xl: clamp(5.375rem, calc(2.698rem + 11.42vw), 10rem); /* 86px - 160px */
+			--margin-6xl: clamp(6.625rem, calc(3.225rem + 14.506vw), 12.5rem); /* 106px - 200px */
+
+			/* Gap */
+			--gap-xs: clamp(0.25rem, calc(0.105rem + 0.617vw), 0.5rem); /* 4px - 8px */
+			--gap-sm: clamp(0.5rem, calc(0.355rem + 0.617vw), 0.75rem); /* 8px - 12px */
+			--gap-base: clamp(0.75rem, calc(0.605rem + 0.617vw), 1rem); /* 12px - 16px */
+			--gap-md: clamp(0.875rem, calc(0.513rem + 1.543vw), 1.5rem); /* 14px - 24px */
+			--gap-lg: clamp(1rem, calc(0.421rem + 2.469vw), 2rem); /* 16px - 32px */
+			--gap-xl: clamp(1.5rem, calc(0.632rem + 3.704vw), 3rem); /* 24px - 48px */
+			--gap-2xl: clamp(2rem, calc(0.843rem + 4.938vw), 4rem); /* 32px - 64px */
+			--gap-3xl: clamp(3.25rem, calc(1.659rem + 6.79vw), 6rem); /* 52px - 96px */
+			--gap-4xl: clamp(4.25rem, calc(2.08rem + 9.259vw), 8rem); /* 68px - 128px */
+			--gap-5xl: clamp(5.375rem, calc(2.698rem + 11.42vw), 10rem); /* 86px - 160px */
+			--gap-6xl: clamp(6.625rem, calc(3.225rem + 14.506vw), 12.5rem); /* 106px - 200px */
+
+			/* Rounded corners */
+			--radius-xs: 0.125rem;
+			--radius-sm: 0.25rem;
+			--radius-md: 0.375rem;
+			--radius-lg: clamp(0.25rem, calc(0.105rem + 0.617vw), 0.5rem); /* 4px - 8px */
+			--radius-xl: clamp(0.375rem, calc(0.158rem + 0.926vw), 0.75rem); /* 6px - 12px */
+			--radius-2xl: clamp(0.625rem, calc(0.408rem + 0.926vw), 1rem); /* 10px - 16px */
+			--radius-3xl: clamp(0.875rem, calc(0.513rem + 1.543vw), 1.5rem); /* 14px - 24px */
+			--radius-4xl: clamp(1rem, calc(0.421rem + 2.469vw), 2rem); /* 16px - 32px */
+		}
+	}
 }
 
 /* Custom variants */
-@custom-variant initial (&.initial, .initial &);
-@custom-variant onload (&.onload, .onload &);
 @custom-variant mounted (&.mounted, .mounted &);
-@custom-variant is-safari (&.is-safari, .is-safari &);
-
-/* Dark mode with class */
+@custom-variant visible (&.visible, .visible &);
 @variant dark (&:where(.dark, .dark *));
 
-@utility transition-mode {
-	@apply transition-colors duration-300 onload:duration-0 ease-in-out-cubic;
+/* Utilities */
+@utility transition-hover {
+	@apply [transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,--tw-gradient-from,--tw-gradient-via,--tw-gradient-to,opacity] ease-out-cubic duration-300;
 }
 
-@utility slide-in-initial {
-	@apply initial:opacity-0 initial:translate-y-[var(--y,-8px)] mounted:opacity-100 mounted:translate-y-0 hover:delay-0;
-	transition:
-		opacity 0.7s ease-out var(--delay),
-		transform 0.7s ease-out var(--delay);
+@utility container {
+	@apply max-w-none lg:max-w-(--w-container) w-full;
 }
 
-@utility slide-in {
-	@apply opacity-0 translate-y-[var(--y,-8px)] mounted:opacity-100 mounted:translate-y-0 hover:delay-0;
-	transition:
-		opacity 0.7s ease-out var(--delay),
-		transform 0.7s ease-out var(--delay);
-}
-
-@utility fade-in-initial {
-	@apply initial:opacity-0 mounted:opacity-100 hover:delay-0;
-	transition: opacity 0.7s ease-out var(--delay);
-}
-
-@utility fade-in {
-	@apply opacity-0 mounted:opacity-100 hover:delay-0;
-	transition: opacity 0.7s ease-out var(--delay);
-}
-
+/* Plugins */
 @plugin "@tailwindcss/typography";
-//@plugin "fluid-tailwind";
-//@plugin "tailwindcss-motion";
